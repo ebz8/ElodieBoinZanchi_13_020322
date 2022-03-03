@@ -1,17 +1,17 @@
 import { Routes, Route } from "react-router-dom"
 
-import Home from './pages/Home/Home'
-import UserProfil from './pages/UserProfil/UserProfil'
-import SignIn from './pages/SignIn/SignIn'
-import Error404 from './pages/Error404/Error404'
+import HomePage from './pages/HomePage/HomePage'
+import LoginPage from './pages/LoginPage/LoginPage'
+import UserPage from './pages/UserPage/UserPage'
+import Error404 from './components/Error404/Error404'
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path='/' element={<Home />}/>
-        <Route exact path='/sign-in' element={<SignIn />}/>
-        <Route path="/user/:id" element={<UserProfil />}/>
+        <Route exact path='/' element={<HomePage />}/>
+        <Route exact path='/login' element={<LoginPage />}/>
+        <Route path="/profile" element={<UserPage />}/>
         <Route path="/*" element={<Error404 />}/>
       </Routes>
     </div>
