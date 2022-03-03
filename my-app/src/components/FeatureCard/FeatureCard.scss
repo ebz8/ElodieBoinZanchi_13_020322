@@ -1,0 +1,23 @@
+@import '../../app/style/mixins.scss';
+
+
+.feature-card {
+    flex: 1;
+    padding: 2.5rem;
+
+    img {
+        width: rem(150);
+        border: rem(10) solid $mainColor;
+        border-radius: 50%;
+        padding: 1rem;
+    }
+
+    h3 {
+        margin-top: 1em;
+        font-weight: bold;
+    }
+
+    p {
+        margin-top: 1em;
+    }
+}

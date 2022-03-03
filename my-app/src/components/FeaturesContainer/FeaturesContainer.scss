@@ -1,0 +1,12 @@
+@import '../../app/style/mixins.scss';
+
+.features-container {
+
+    .features {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-flow: row nowrap;
+        text-align: center;
+    }
+}

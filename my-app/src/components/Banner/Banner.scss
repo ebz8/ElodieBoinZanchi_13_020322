@@ -1,0 +1,33 @@
+@import '../../app/style/mixins.scss';
+
+.banner {
+    position: relative;
+    height: rem(400);
+
+    .content {
+        position: absolute;
+        top: rem(50);
+        right: rem(50);
+        width: rem(350);
+        margin: 2rem;
+        padding: 2rem;
+        background-color: white;
+
+        .subtitle {
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .text {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: 0% 33%;
+    }
+}
