@@ -16,7 +16,7 @@ const PageContainer = ({children, title}) => {
   return (
     <>
       <MainNav />
-        {children}
+        <main className={`${title.toLowerCase()}-content`}>{children}</main>
       <Footer />
     </>
   )
