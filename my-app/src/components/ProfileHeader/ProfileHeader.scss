@@ -1,0 +1,12 @@
+@import '../../app/style/mixins.scss';
+
+.profile-header {
+    margin: 1rem 0;
+    color: white;
+    text-align: center;
+
+    h1 {
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+}

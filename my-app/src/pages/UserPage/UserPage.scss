@@ -1,6 +1,12 @@
 @import '../../app/style/mixins.scss';
 
 .profile-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
     flex: 1;
+    gap: 1rem;
+    padding: 2rem;
     background-color: $neutralDark;
 }
