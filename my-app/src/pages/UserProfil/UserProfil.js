@@ -1,4 +1,4 @@
-import './User.scss'
+import './UserProfil.scss'
 
 const User = () => {
   return (
