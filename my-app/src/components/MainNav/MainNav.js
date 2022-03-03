@@ -1,10 +1,17 @@
 import './MainNav.scss'
+import Logo from '../../assets/img/argentBankLogo.png'
+
+import { Link } from 'react-router-dom'
+
+
 
 const MainNav = () => {
   return (
-    <div>
-      
-    </div>
+    <nav className="main-nav">
+      <Link to={`/`}>
+        <Logo alt="Argent Bank Logo" className="logo"/>
+      </Link>
+    </nav>
   )
 }
 

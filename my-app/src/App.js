@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path='/' element={<HomePage />}/>
-        <Route exact path='/login' element={<LoginPage />}/>
+        <Route path='/' element={<HomePage />}/>
+        <Route path='/login' element={<LoginPage />}/>
         <Route path="/profile" element={<UserPage />}/>
         <Route path="/*" element={<Error404 />}/>
       </Routes>
