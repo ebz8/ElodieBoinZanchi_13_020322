@@ -1,0 +1,40 @@
+// global variables
+
+// px to rem
+$html-font-size: 16px;@function stripUnit($value) {
+    @return $value / ($value * 0 + 1);
+}
+@function rem($pxValue) {
+    @return #{stripUnit($pxValue) / stripUnit($html-font-size)}rem;
+}
+
+// color pallet
+// general
+$mainColor: hsl(158, 100%, 37%);
+$secondaryColor: hsl(210, 29%, 24%);
+$neutralLight: hsl(0deg 0% 80%);
+
+
+// config webpack to use variables in react components
+:export {
+    maincolor: $mainColor;
+    secondarycolor: $secondaryColor;
+}
+
+// Responsive config : breakpoints
+//
+$mobile-small: 350px;
+$mobile: 380px;
+$mobile-large: 590px;
+$tablet: 820px;
+$small-desk: 1012px;
+$large-desk: 1440px;
+
+$breakpoint: (
+    mobile-small: $mobile-small,
+    mobile: $mobile,
+    mobile-large: $mobile-large,
+    tablet: $tablet,
+    small-desk: $small-desk,
+    large-desk: $large-desk
+) !default;

@@ -1,16 +1,13 @@
 import './MainNav.scss'
-import Logo from '../../assets/img/argentBankLogo.png'
 
-import { Link } from 'react-router-dom'
-
-
+import Logo from '../Logo/Logo'
+import NavButton from '../NavButton/NavButton'
 
 const MainNav = () => {
   return (
     <nav className="main-nav">
-      <Link to={`/`}>
-        <Logo alt="Argent Bank Logo" className="logo"/>
-      </Link>
+      <Logo />
+      <NavButton path={`/login`} name='Sign In'/>
     </nav>
   )
 }

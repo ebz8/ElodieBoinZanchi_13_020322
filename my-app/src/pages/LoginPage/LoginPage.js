@@ -1,10 +1,11 @@
 import './LoginPage.scss'
 
+import PageContainer from '../../components/PageContainer/PageContainer'
+
 const LoginPage = () => {
   return (
-    <div>
-      <p>loggin</p>
-    </div>
+    <PageContainer title='Login'>
+    </PageContainer>
   )
 }
 

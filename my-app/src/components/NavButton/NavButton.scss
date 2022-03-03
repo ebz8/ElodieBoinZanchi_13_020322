@@ -1,0 +1,19 @@
+@import '../../app/style/mixins.scss';
+
+.nav-btn {
+    display: flex;
+    gap: .3rem;
+    font-weight: bold;
+
+    // mettre au propre
+    .fa {
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    p {
+        font-weight: bold;
+    }
+}

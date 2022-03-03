@@ -2,9 +2,10 @@ import './Footer.scss'
 
 const Footer = () => {
   return (
-    <div>
-      
+    <div className="footer">
+      <p>Copyright {new Date().getFullYear()} Argent Bank</p>
     </div>
+    
   )
 }
 

@@ -1,0 +1,16 @@
+@import '../../app/style/mixins.scss';
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: rem(5) rem(20);
+
+    .logo {
+        width: rem(200);
+    }
+
+    .nav-btn {
+        margin-right: 0.5rem;
+    }
+}

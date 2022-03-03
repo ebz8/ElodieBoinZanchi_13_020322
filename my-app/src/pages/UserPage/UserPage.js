@@ -1,10 +1,11 @@
 import './UserPage.scss'
 
+import PageContainer from '../../components/PageContainer/PageContainer'
+
 const UserPage = () => {
   return (
-    <div>
-      
-    </div>
+    <PageContainer title='Profile'>
+    </PageContainer>
   )
 }
 

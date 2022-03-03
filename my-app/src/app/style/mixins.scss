@@ -1,0 +1,38 @@
+@import './variables.scss';
+
+// Responsive config
+@mixin mobile-small{
+  @media screen and (max-width: map-get($breakpoint, mobile-small)){
+    @content;
+  }
+}
+
+@mixin mobile{
+    @media screen and (max-width: map-get($breakpoint, mobile)){
+      @content;
+    }
+  }
+  
+  @mixin mobile-large{
+    @media screen and (max-width: map-get($breakpoint, mobile-large)){
+      @content;
+    }
+  }
+  
+  @mixin tablet{
+    @media screen and (max-width: map-get($breakpoint, tablet)){
+      @content;
+    }
+  }
+  
+  @mixin small-desk{
+    @media screen and (max-width: map-get($breakpoint, small-desk)){
+      @content;
+    }
+  }
+  
+  @mixin large-desk{
+    @media screen and (max-width: map-get($breakpoint, large-desk)){
+      @content;
+    }
+  }

@@ -1,13 +1,23 @@
 import './PageContainer.scss'
 
 import MainNav from '../MainNav/MainNav'
+import Footer from '../Footer/Footer'
 
-const PageContainer = () => {
+import { useEffect } from 'react'
+
+const PageContainer = ({children, title}) => {
+
+  // to always have the correct meta title 
+  useEffect( () => {
+    document.title=`${title} | Argent Bank`
+    window.scrollTo(0,0)
+  }, [title])
+
   return (
     <>
       <MainNav />
-      {/* {children}
-      <Footer /> */}
+        {children}
+      <Footer />
     </>
   )
 }
