@@ -23,9 +23,7 @@ const LoginForm = ({path, name}) => {
                 </div>
                 <div className="form-group sign-in">
                     {/* <button type="submit"> */}
-                    <Link to={`/profile`}>
-                        Sign In
-                    </Link>
+                    <Link to={`/profile`}>Sign In</Link>
                     {/* </button> */}
                 </div>
             </form>
