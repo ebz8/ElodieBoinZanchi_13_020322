@@ -1,6 +1,7 @@
 import './App.scss'
 
 import { Routes, Route } from "react-router-dom"
+import { ToastContainer } from 'react-toastify'
 
 import HomePage from './pages/HomePage/HomePage'
 import LoginPage from './pages/LoginPage/LoginPage'
@@ -16,6 +17,7 @@ function App() {
         <Route path="/profile" element={<UserPage />}/>
         <Route path="/*" element={<Error404 />}/>
       </Routes>
+      <ToastContainer />
     </div>
   )
 }
