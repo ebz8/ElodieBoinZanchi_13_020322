@@ -15,41 +15,43 @@ const LoginForm = ({path, name}) => {
     })
     const { email, password } = formData
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+    // const navigate = useNavigate()
+    // const dispatch = useDispatch()
 
-    const { user, isLoading, isError, isSucces, message } = useSelector((state) => state.auth)
+    // const { user, isLoading, isError, isSucces, message } = useSelector((state) => state.auth)
 
-    useEffect(() => {
-        if (isError) {
-            toast.error(message)
-        }
-        if (isSucces || user) {
-            navigate('/profile')
-        }
+    // useEffect(() => {
+    //     if (isError) {
+    //         toast.error(message)
+    //     }
+    //     if (isSucces || user) {
+    //         navigate('/profile')
+    //     }
         
-        dispatch(reset())
-    }, [user, isError, isSucces, message, navigate, dispatch])
+    //     dispatch(reset())
+    // }, [user, isError, isSucces, message, navigate, dispatch])
 
     const onChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }))
+        console.log(e.target.value)
+        // setFormData((prevState) => ({
+        //     ...prevState,
+        //     [e.target.name]: e.target.value,
+        // }))
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
-        const userData = {
-            email,
-            password
-        }
-        dispatch(login(userData))
+        console.log(e.target.value)
+        // const userData = {
+        //     email,
+        //     password
+        // }
+        // dispatch(login(userData))
     }
 
-    if (isLoading) {
-        console.log('loading')
-    }
+    // if (isLoading) {
+    //     console.log('loading')
+    // }
     return (
         <div className="form-container">
             <form onSubmit={onSubmit}>
