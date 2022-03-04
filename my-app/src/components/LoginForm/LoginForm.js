@@ -15,7 +15,7 @@ const LoginForm = ({path, name}) => {
     })
     const { email, password } = formData
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     // const dispatch = useDispatch()
 
     // const { user, isLoading, isError, isSucces, message } = useSelector((state) => state.auth)
@@ -41,7 +41,8 @@ const LoginForm = ({path, name}) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target.value)
+        console.log('submit')
+        navigate('/profile')
         // const userData = {
         //     email,
         //     password
@@ -69,11 +70,7 @@ const LoginForm = ({path, name}) => {
                     <input type="checkbox" name="remember-me" onChange={onChange}/>
                     <label htmlFor="remember-me" className="remember-me">Remember me</label>
                 </div>
-                <div className="form-group sign-in">
-                    {/* <button type="submit"> */}
-                    <Link to={`/profile`}>Sign In</Link>
-                    {/* </button> */}
-                </div>
+                <button type="submit" className='sign-in'>Sign In</button>
             </form>
         </div>
     )
