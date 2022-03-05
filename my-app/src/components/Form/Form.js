@@ -1,26 +1,25 @@
 import './Form.scss'
 import { FaUserCircle } from 'react-icons/fa'
 
+import axios from 'axios'
+
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../../features/authentication'
 
 
 function Form() {
-    const navigate = useNavigate() 
     const { register, handleSubmit, formState: {errors, isSubmitting, isSubmitSuccessful} } = useForm({
         mode: 'onTouched'
-    })    
-    console.log(errors)
+    })
+    const dispatch = useDispatch()    
 
-    const handleLogin = (data) => {
-        console.log(data)
-        console.log(isSubmitSuccessful)
-        // mettre les data dans le state global ?
-
-        // if (isSubmitSuccessful) {
-            navigate('/profile')
-        // }
-    }
+    const handleLogin = async (data) => {
+        const email = data.username
+        const password = data.password
+        dispatch(login({email, password}))
+     }
     
   return (
     <div className="form-container">

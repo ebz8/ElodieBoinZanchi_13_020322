@@ -1,36 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import services from './services'
-// import fetchApi from './services'
+import apiQueries from './apiQueries'
 
-
-// Get user from localStorage
-const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
-    user: user ? user : null,
-    userData:{},
     token: null,
-    isError: false,
     isLoading: false,
-    isSuccess: false,
-    message: '',
+    isError: false,
+    userData:{},
 }
-
-// Register user
-export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
-    try {
-        return await services.register(user)
-    } catch(error) {
-        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-        // put error msg in the payload
-        return thunkAPI.rejectWithValue(message)
-    }
-} )
 
 // Login
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     try {
-        return await services.login(user)
+        return await apiQueries.login(user)
     } catch(error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
         // put error msg in the payload
@@ -46,51 +28,37 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
 export const authentication = createSlice({
     name: 'auth',
     initialState,
-    // non async functions
+    // non-async functions
     reducers:{
         // reset to default values
         reset: (state) => {
             state.isLoading = false
             state.isSuccess = false
             state.isError = false
-            state.message = ''
         }
     },
     // async functions
     extraReducers: (builder) => {
         builder
-        .addCase(register.pending, (state) => {
-            state.isLoading = true
-        })
-        .addCase(register.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.isSuccess = true
-            state.user = action.payload
-        })
-        .addCase(register.rejected, (state, action) => {
-            state.isLoading = false
-            state.isError = true
-            // get error msg from payload of thunkAPI.rejectWithValue(message)
-            state.message = action.payload
-            state.user = null
-        })
         .addCase(login.pending, (state) => {
             state.isLoading = true
         })
         .addCase(login.fulfilled, (state, action) => {
+            const {token, data} = action.payload
             state.isLoading = false
-            state.isSuccess = true
-            state.user = action.payload
+            state.isError = false
+            state.token = token
+            state.userData = data
         })
         .addCase(login.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
-            // get error msg from payload of thunkAPI.rejectWithValue(message)
-            state.message = action.payload
-            state.user = null
+            state.token = null
+            state.userData = null
         })
         // .addCase(logout.fulfilled, (state) => {
-        //     state.user = null
+        //     state.token = null
+        //     state.userData = null
         // })
     }
 })
