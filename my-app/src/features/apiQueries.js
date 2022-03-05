@@ -5,9 +5,7 @@ import { api, getToken, removeToken, setToken } from '../app/services/api'
 import { createBrowserHistory } from '../app/utils'
 
 
-
-// remplacer user par token dans le local storage
-const login = async (data) => {
+export const login = createAsyncThunk('auth/login', async (data) => {
     const response = await axios.post(api + 'login', data)
     // keep in localStorage
     if (response.data) {
@@ -17,16 +15,9 @@ const login = async (data) => {
         // history.push('/profile')
     }
     return response.data
-}
+})
 
 // const logout = () => {
 //     removeToken()
 //     console.log('token retiré du localStorage')
 // }
-
-const services = {
-    login,
-    // logout
-}
-
-export default services
