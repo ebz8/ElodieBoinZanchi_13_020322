@@ -1,24 +1,30 @@
 import './LoginForm.scss'
-
 import { FaUserCircle } from 'react-icons/fa'
-import { toast } from 'react-toastify'
 
-import { Link, useNavigate } from 'react-router-dom'
+// import { toast } from 'react-toastify'
+
+import { useNavigate, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { login, reset } from '../../features/authentication'
+// import { login, reset } from '../../features/authentication'
+import { login } from '../../features/authentication'
+import history from '../../app/utils/history'
 
 const LoginForm = ({path, name}) => {
     const [formData, setFormData] = useState({
-        email: '',
+        username: '',
         password: '',
     })
     const { email, password } = formData
+    // const { token, user, isLoading, isError, isSucces, message } = useSelector((state) => state.auth)
 
     const navigate = useNavigate()
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    // const { user, isLoading, isError, isSucces, message } = useSelector((state) => state.auth)
+    // if(token || getToken()){
+    //     history.push('/profile');
+    // }
+
 
     // useEffect(() => {
     //     if (isError) {
@@ -32,17 +38,18 @@ const LoginForm = ({path, name}) => {
     // }, [user, isError, isSucces, message, navigate, dispatch])
 
     const onChange = (e) => {
-        console.log(e.target.value)
-        // setFormData((prevState) => ({
-        //     ...prevState,
-        //     [e.target.name]: e.target.value,
-        // }))
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }))
+        console.log(formData)
     }
 
-    const onSubmit = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault()
         console.log('submit')
         navigate('/profile')
+        // history.push('/profile')
         // const userData = {
         //     email,
         //     password
@@ -50,12 +57,10 @@ const LoginForm = ({path, name}) => {
         // dispatch(login(userData))
     }
 
-    // if (isLoading) {
-    //     console.log('loading')
-    // }
+    // if (isLoading)
     return (
         <div className="form-container">
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleLogin}>
                 <FaUserCircle/>
                 <h1>Sign In</h1>
                 <div className="form-group username">
