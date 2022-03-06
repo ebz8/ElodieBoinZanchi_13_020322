@@ -1,26 +1,34 @@
 import './Form.scss'
 import { FaUserCircle } from 'react-icons/fa'
 
-import axios from 'axios'
-
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-// import { login } from '../../features/authentication'
 import { login } from '../../features/authentication'
+// import { getToken } from '../../app/services/api'
+// import { useNavigate } from 'react-router-dom'
 
 
 function Form() {
-    const { register, handleSubmit, formState: {errors, isSubmitting, isSubmitSuccessful} } = useForm({
+    const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm({
         mode: 'onTouched'
     })
-    const dispatch = useDispatch()    
+    // const {token, isLoading} = useSelector((state) => state.auth)
+    const dispatch = useDispatch()
 
     const handleLogin = async (data) => {
         const email = data.username
         const password = data.password
         dispatch(login({email, password}))
      }
+    
+     // if isSubmitSuccessful
+    // if (isLoading) {
+    //     console.log('chargement depuis le formulaire')
+    // }
+
+    // if (token || getToken()) {
+    //     console.log('aller à la page /profile')
+    // }
     
   return (
     <div className="form-container">

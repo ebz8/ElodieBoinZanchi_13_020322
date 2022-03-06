@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 const initialState = {
-    token: null,
+    token: Boolean(localStorage.getItem('token')),
     isLoading: false,
     isError: false,
     userData: {},
@@ -25,11 +25,13 @@ export const login = createAsyncThunk('auth/login', async (data) => {
     return response.data
 })
 
-// fetch user data
+// fetch user data : action appelée quand un jeton est dans le localStorage
+// s'il ne l'est plus : reset
 export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejectWithValue}) => {
     try {
         const accessToken = getToken()
         console.log(accessToken)
+        // Un "Bearer Token" est un JWT dont le rôle est d'indiquer que l'utilisateur qui accède aux ressources est bien authentifié
         api.defaults.headers.Authorization = `Bearer ${accessToken}`
         const response = await api.get('/user')
         console.log(response.data)
@@ -41,10 +43,10 @@ export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejec
     }
 })
 
-// const logout = () => {
-//     removeToken()
-//     console.log('token retiré du localStorage')
-// }
+export const logout = createAsyncThunk('auth/signOut', async () => {
+    removeToken()
+    console.log('token retiré du localStorage')
+})
 
 export const authentication = createSlice({
     name: 'auth',
@@ -65,11 +67,9 @@ export const authentication = createSlice({
             state.isLoading = true
         })
         .addCase(login.fulfilled, (state, action) => {
-            const {token, data} = action.payload
             state.isLoading = false
             state.isError = false
-            state.token = token
-            state.userData = data
+            state.token = action.payload.body
         })
         .addCase(login.rejected, (state) => {
             state.isLoading = false
@@ -93,10 +93,10 @@ export const authentication = createSlice({
             state.token = token
             state.userData = data
         })
-        // .addCase(logout.fulfilled, (state) => {
-        //     state.token = null
-        //     state.userData = null
-        // })
+        .addCase(logout.fulfilled, (state) => {
+            state.token = null
+            state.userData = null
+        })
     }
 })
 
