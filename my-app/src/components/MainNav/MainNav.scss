@@ -10,7 +10,13 @@
         width: rem(200);
     }
 
-    .nav-btn {
-        margin-right: 0.5rem;
+    .nav-items {
+        display: flex;
+        gap: .5rem;
+        
+        .nav-btn {
+            margin-right: 0.5rem;
+        }
     }
+
 }
