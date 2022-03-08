@@ -1,9 +1,11 @@
 import './Form.scss'
 import { FaUserCircle } from 'react-icons/fa'
 
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { login } from '../../features/authentication'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, getUserData } from '../../features/authentication/authenticationThunks'
 // import { getToken } from '../../app/services/api'
 // import { useNavigate } from 'react-router-dom'
 
@@ -12,8 +14,9 @@ function Form() {
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm({
         mode: 'onTouched'
     })
-    // const {token, isLoading} = useSelector((state) => state.auth)
+    const {token} = useSelector((state) => state.auth)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleLogin = async (data) => {
         const email = data.username
@@ -21,14 +24,16 @@ function Form() {
         dispatch(login({email, password}))
      }
     
-     // if isSubmitSuccessful
-    // if (isLoading) {
-    //     console.log('chargement depuis le formulaire')
-    // }
+     // if (token || getToken())
+    // if isSubmitSuccessful
+    // if (isLoading)
 
-    // if (token || getToken()) {
-    //     console.log('aller à la page /profile')
-    // }
+    useEffect(() => {
+        if (token) {     
+            navigate('/profile')
+        }
+    }, [navigate, token])
+
     
   return (
     <div className="form-container">

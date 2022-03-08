@@ -4,37 +4,32 @@ import { FaUserCircle } from 'react-icons/fa'
 
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { userSelector, useDispatch } from 'react-redux'
-import { reset, logout } from '../../features/authentication'
+import { logout } from '../../features/authentication/authenticationThunks'
 
-const NavButton = ({path, name, connected}) => {
-  const navigate = useNavigate()
+const NavButton = ({path, name, action}) => {
+  // const navigate = useNavigate()
   const dispatch = useDispatch()
   // const { user } = useSelector((state) => state.auth)
+  //        <Link to={path} className="nav-btn" onClick={dispatch(logout())}>
 
-  // remplacer le link par un <button> avec un onClick={onLogout}
-  const handleLogout = () => {
-    dispatch(logout())
-    // dispatchEvent(reset())
-    navigate('/')
-    console.log('user disconnected')
-  }
   
+
   return (
     <>
-      {connected ? (
-        <button className="nav-btn" onClick={handleLogout}>
-        {/* condition pour autres icônes */}
-        <FaUserCircle />
-        <p>{name}</p>
-    </button>
-      ) : (
-    <Link to={path} className="nav-btn">
-        {/* condition pour autres icônes */}
-        <FaUserCircle />
-        <p>{name}</p>
-    </Link>
-      )}
-  </>
+    {action ?
+      <Link to={path} className="nav-btn" onClick={action} >
+          {/* condition pour autres icônes */}
+          <FaUserCircle />
+          <p>{name}</p>
+      </Link>
+    :
+      <Link to={path} className="nav-btn" >
+          {/* condition pour autres icônes */}
+          <FaUserCircle />
+          <p>{name}</p>
+      </Link>
+    }
+    </>
   )
 }
 

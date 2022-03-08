@@ -4,7 +4,7 @@ import Logo from '../Logo/Logo'
 import NavButton from '../NavButton/NavButton'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../features/authentication'
+import { logout } from '../../features/authentication/authenticationThunks'
 
 
 const MainNav = () => {
