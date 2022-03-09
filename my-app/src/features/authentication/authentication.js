@@ -2,26 +2,21 @@ import { createSlice } from '@reduxjs/toolkit'
 import { login, logout, getUserData } from './authenticationThunks'
 
 // mettre des types token: booleann etc.
+// ici garder seulement token, loading, error, connected
 const initialState = {
     token: Boolean(localStorage.getItem('token')),
     loading: false,
     error: false,
     userData: {},
     fulfilled: false,
+    connected: false,
 }
 
 export const authentication = createSlice({
     name: 'auth',
     initialState,
     // non-async functions
-    reducers:{
-        // reset to default values
-        reset: (state) => {
-            state.loading = false
-            state.fulfilled = false
-            state.error = false
-        }
-    },
+    reducers: {},
     // async functions
     extraReducers: (builder) => {
         builder
@@ -65,17 +60,4 @@ export const authentication = createSlice({
     }
 })
 
-export const { reset } = authentication.actions
 export default authentication.reducer
-
-
-// Login
-// export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
-//     try {
-//         return await apiQueries.login(user)
-//     } catch(error) {
-//         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-//         // put error msg in the payload
-//         return thunkAPI.rejectWithValue(message)
-//     }
-// } )
