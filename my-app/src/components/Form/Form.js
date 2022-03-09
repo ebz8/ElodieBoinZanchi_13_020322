@@ -14,7 +14,7 @@ function Form() {
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm({
         mode: 'onTouched'
     })
-    const { token } = useSelector((state) => state.auth)
+    const { fulfilled } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -26,8 +26,9 @@ function Form() {
     
     // changer de place vers app
     useEffect(() => {
-        token && navigate('/profile')
-    }, [navigate, token])
+        fulfilled && navigate('/profile')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [fulfilled])
     
     // if (isLoading)
     

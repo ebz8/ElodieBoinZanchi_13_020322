@@ -10,6 +10,7 @@ import { logout } from '../../features/authentication/authenticationThunks'
 const MainNav = () => {
   const { fulfilled, userData } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+  
   const handleLogout = () => {
     dispatch(logout())
   }

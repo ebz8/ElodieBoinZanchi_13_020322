@@ -46,6 +46,7 @@ export const authentication = createSlice({
         })
         .addCase(getUserData.rejected, (state) => {
             state.loading = false
+            state.fulfilled = false
             // mais récupérer plutot le msg via payload
             state.error = true
             state.userData = {}
