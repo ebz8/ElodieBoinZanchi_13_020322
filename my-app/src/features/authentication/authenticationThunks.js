@@ -25,14 +25,38 @@ export const logout = createAsyncThunk('auth/signOut', async () => {
 export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejectWithValue}) => {
     try {
         const accessToken = getToken()
-        // Un "Bearer Token" est un JWT dont le rôle est d'indiquer que l'utilisateur qui accède aux ressources est bien authentifié
-        api.defaults.headers.Authorization = `Bearer ${accessToken}`
-        const response = await api.get('/user/profile')
+        console.log('coucou depuis getUserData')
+        const response = await axios({
+            method: 'post',
+            url: api + 'profile',
+            headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+        })
         console.log(response)
         return {...response.data, accessToken}
     } catch (error) {
-        removeToken()
+        // removeToken()
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
         return rejectWithValue(message)
     }
 })
+// export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejectWithValue}) => {
+//     try {
+//         const accessToken = getToken()
+//         console.log('coucou depuis getUserData')
+//         // Un "Bearer Token" est un JWT dont le rôle est d'indiquer que l'utilisateur qui accède aux ressources est bien authentifié
+//         // api.defaults.headers.Authorization = `Bearer ${accessToken}`
+//         const response = await axios.post(api + 'profile',  {
+//             headers: {
+//               Authorization: `Bearer ${accessToken}`
+//             }
+//           })
+//         console.log(response)
+//         return {...response.data, accessToken}
+//     } catch (error) {
+//         removeToken()
+//         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+//         return rejectWithValue(message)
+//     }
+// })

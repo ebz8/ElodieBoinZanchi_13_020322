@@ -2,11 +2,11 @@ import './Form.scss'
 import { FaUserCircle } from 'react-icons/fa'
 
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, getUserData } from '../../features/authentication/authenticationThunks'
-// import { getToken } from '../../app/services/api'
+import { getToken } from '../../app/services/api'
 // import { useNavigate } from 'react-router-dom'
 
 
@@ -14,27 +14,24 @@ function Form() {
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm({
         mode: 'onTouched'
     })
-    const {token} = useSelector((state) => state.auth)
+    const { token } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleLogin = async (data) => {
+    const handleLogin = (data) => {
         const email = data.username
         const password = data.password
-        dispatch(login({email, password}))
-     }
+        dispatch(login({ email, password }))
+    }
     
-     // if (token || getToken())
-    // if isSubmitSuccessful
-    // if (isLoading)
-
+    // changer de place vers app
     useEffect(() => {
-        if (token) {     
-            navigate('/profile')
-        }
+        token && navigate('/profile')
     }, [navigate, token])
-
     
+    // if (isLoading)
+    
+    // if isSubmitSuccessful
   return (
     <div className="form-container">
             <form onSubmit={handleSubmit(handleLogin)}>

@@ -4,15 +4,8 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
-// import { getToken } from './app/services/api'
-// import { getUserData } from './features/authentication'
-
 import * as serviceWorker from './serviceWorker'
 
-// if(getToken()) {
-//   console.log('index')
-//   store.dispatch(getUserData())
-// }
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,15 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { login, logout, getUserData } from './authenticationThunks'
-// import history from '../app/utils'
 
-
+// mettre des types token: booleann etc.
 const initialState = {
     token: Boolean(localStorage.getItem('token')),
-    isLoading: false,
-    isError: false,
+    loading: false,
+    error: false,
     userData: {},
+    fulfilled: false,
 }
-
 
 export const authentication = createSlice({
     name: 'auth',
@@ -18,47 +17,50 @@ export const authentication = createSlice({
     reducers:{
         // reset to default values
         reset: (state) => {
-            state.isLoading = false
-            state.isSuccess = false
-            state.isError = false
+            state.loading = false
+            state.fulfilled = false
+            state.error = false
         }
     },
     // async functions
     extraReducers: (builder) => {
         builder
         .addCase(login.pending, (state) => {
-            state.isLoading = true
+            state.loading = true
         })
         .addCase(login.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.isError = false
+            state.loading = false
+            state.error = false
+            // réflechir au fulfilled
+            state.fulfilled = false
             state.token = action.payload.body
         })
         .addCase(login.rejected, (state) => {
-            state.isLoading = false
-            state.isError = true
+            state.loading = false
+            state.error = true
             state.token = false
             state.userData = {}
         })
         .addCase(getUserData.pending, (state) => {
-            state.isLoading = true
+            state.loading = true
         })
         .addCase(getUserData.rejected, (state) => {
-            state.isLoading = false
-            // state.isError = true
-            state.token = false
+            state.loading = false
+            // mais récupérer plutot le msg via payload
+            state.error = true
             state.userData = {}
         })
         .addCase(getUserData.fulfilled, (state, action) => {
-            const {token, data} = action.payload
-            state.isLoading = false
-            state.isError = false
-            state.token = token
-            state.userData = data
+            // const {data} = action.payload
+            state.loading = false
+            state.error = false
+            state.userData = action.payload
+            state.fulfilled = true
         })
         .addCase(logout.fulfilled, (state) => {
             state.token = false
             state.userData = null
+            state.fulfilled = false
         })
     }
 })
