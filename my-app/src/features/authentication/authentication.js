@@ -51,10 +51,9 @@ export const authentication = createSlice({
             state.userData = {}
         })
         .addCase(getUserData.fulfilled, (state, action) => {
-            // const {data} = action.payload
             state.loading = false
             state.error = false
-            state.userData = action.payload
+            state.userData = action.payload.body
             state.fulfilled = true
         })
         .addCase(logout.fulfilled, (state) => {

@@ -4,10 +4,14 @@ import PageContainer from '../../components/PageContainer/PageContainer'
 import ProfileHeader from '../../components/ProfileHeader/ProfileHeader'
 import AccountCard from '../../components/AccountCard/AccountCard'
 
+import { useSelector } from 'react-redux'
+
 const UserPage = () => {
+  const { userData } = useSelector((state) => state.auth)
+
   return (
     <PageContainer title='Profile'>
-      <ProfileHeader userName="Tony Jarvis"/>
+      <ProfileHeader firstName={userData.firstName} lastName={userData.lastName}/>
       <AccountCard
         checking="8349"
         amount="2,082.79"/>

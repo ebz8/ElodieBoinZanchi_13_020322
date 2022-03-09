@@ -14,23 +14,19 @@ import Error404 from './components/Error404/Error404'
 
 function App() {
   const dispatch = useDispatch()
-  const { token, userData } = useSelector((state) => state.auth)
-  const isConnected = token
+  const { token, fulfilled } = useSelector((state) => state.auth)
 
-
-  // se baser plutôt sur fulfilled pour le router
   useEffect(()=> {
-    isConnected && dispatch(getUserData())
-    console.log(userData)
+    token && dispatch(getUserData())
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected])
+  }, [token])
   
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<HomePage />}/>
         <Route path='/login' element={<LoginPage />}/>
-        <Route path="/profile" element={isConnected ? (<UserPage />) : (<Navigate to='/login'/>)}/>
+        <Route path="/profile" element={fulfilled ? (<UserPage />) : (<Navigate to='/login'/>)}/>
         <Route path="/*" element={<Error404 />}/>
       </Routes>
       {/* <ToastContainer /> */}

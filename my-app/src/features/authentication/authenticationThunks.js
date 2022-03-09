@@ -7,7 +7,6 @@ export const login = createAsyncThunk('auth/login', async (data) => {
     const response = await axios.post(api + 'login', data)
     // keep in localStorage
     if (response.data) {
-        console.log(response)
         setToken(response.data.body.token)
         console.log(response.data.message + ' with following token set in localStorage: ' + response.data.body.token)
         // history.push('/profile')
@@ -25,7 +24,6 @@ export const logout = createAsyncThunk('auth/signOut', async () => {
 export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejectWithValue}) => {
     try {
         const accessToken = getToken()
-        console.log('coucou depuis getUserData')
         const response = await axios({
             method: 'post',
             url: api + 'profile',
@@ -33,7 +31,6 @@ export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejec
 				Authorization: `Bearer ${accessToken}`,
 			},
         })
-        console.log(response)
         return {...response.data, accessToken}
     } catch (error) {
         // removeToken()
