@@ -1,6 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import axios from 'axios'
+// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+// config URLS
+export const api = 'http://localhost:3001/api/v1/user/'
 
 // tokens
 export const getToken = () => {
@@ -13,31 +14,6 @@ export const setToken = (key) => {
     localStorage.setItem('token', key)
 }
 
-
-// config URLS
-export const api = 'http://localhost:3001/api/v1/user/'
-
-// export const api = axios.create({
-//   baseURL: 'http://localhost:3001/api/v1/user/',
-//   headers: {
-//     "Content-Type": "application/json",
-    
-//   },
-// })
-// api.interceptors.request.use(
-//     (config) => {
-//         const token = getToken()
-//         if (token) {
-//           config.headers['Authorization'] = `Bearer ${token}`;
-//         }
-    
-//         return config;
-//       },
-    
-//       (error) => {
-//         return Promise.reject(error);
-//       }
-// )
 
 // export const argentbankApi = createApi({
 //     reducerPath: 'abApi',

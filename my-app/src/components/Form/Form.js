@@ -1,22 +1,16 @@
 import './Form.scss'
 import { FaUserCircle } from 'react-icons/fa'
 
-import { useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
-import { login, getUserData } from '../../features/authentication/authenticationThunks'
-import { getToken } from '../../app/services/api'
-// import { useNavigate } from 'react-router-dom'
+import { login } from '../../features/authentication/authenticationThunks'
+import { useDispatch } from 'react-redux'
 
 
 function Form() {
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm({
         mode: 'onTouched'
     })
-    const { fulfilled } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const handleLogin = (data) => {
         const email = data.username
@@ -24,14 +18,7 @@ function Form() {
         dispatch(login({ email, password }))
     }
     
-    // changer de place vers app
-    useEffect(() => {
-        fulfilled && navigate('/profile')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fulfilled])
-    
     // if (isLoading)
-    
     // if isSubmitSuccessful
   return (
     <div className="form-container">

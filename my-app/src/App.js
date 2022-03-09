@@ -1,7 +1,7 @@
 import './App.scss'
 
 import { useEffect } from 'react'
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
 // import { ToastContainer } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserData } from './features/authentication/authenticationThunks'
@@ -14,12 +14,14 @@ import Error404 from './components/Error404/Error404'
 
 function App() {
   const dispatch = useDispatch()
-  const { token, fulfilled } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
+  const { token, fulfilled, loading, error } = useSelector((state) => state.auth)
 
   useEffect(()=> {
     token && dispatch(getUserData())
+    fulfilled && navigate('/profile')
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token])
+  }, [token, fulfilled])
   
   return (
     <div className="App">
