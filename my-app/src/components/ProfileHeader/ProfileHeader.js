@@ -79,7 +79,6 @@ const ProfileHeader = ({ firstName, lastName }) => {
                   minLength: { value: 2, message: "min 2 characters" },
                 })}
               />
-              {errors.firstName && <span>{errors.firstName.message}</span>}
             </div>
             <div className="form-group lastname">
               <input
@@ -89,8 +88,11 @@ const ProfileHeader = ({ firstName, lastName }) => {
                   minLength: { value: 2, message: "min 2 characters" },
                 })}
               />
-              {errors.lastName && <span>{errors.lastName.message}</span>}
             </div>
+          </div>
+          <div className="errors-group">
+            {errors.firstName && <span className="error">{errors.firstName.message}</span>}
+            {errors.lastName && <span className="error">{errors.lastName.message}</span>}
           </div>
           <div className="buttons-group">
             <button className="main-button" type="submit">Save</button>
