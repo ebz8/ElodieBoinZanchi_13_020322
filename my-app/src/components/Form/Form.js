@@ -56,7 +56,7 @@ function Form() {
             Remember me
           </label>
         </div>
-        <button type="submit" className="sign-in" disabled={isSubmitting}>
+        <button type="submit" className="main-button" disabled={isSubmitting}>
           Sign In
         </button>
       </form>

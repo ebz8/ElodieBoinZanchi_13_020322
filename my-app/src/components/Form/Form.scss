@@ -45,17 +45,11 @@
             }
         }
 
-        .sign-in {
+        button {
             width: 100%;
             margin-top: .5rem;
-            padding: rem(8);
-            background-color: $mainColor;
             font-size: 1.1rem;
-            font-weight: bold;
-            color: white;
-            text-align: center;
             text-decoration: underline;
         }
     }
-    
 }

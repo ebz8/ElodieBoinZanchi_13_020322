@@ -55,9 +55,17 @@
   }
 
   .main-button {
-    padding: rem(10);
+    padding: rem(8);
     background-color: $mainColor;
     color: white;
     font-weight: bold;
+
+    &:hover {
+      background:darken($mainColor,8%);
+      transition: all 0.3s ease;
+    }
+    &:active {
+      background:darken($mainColor,25%);
+    } 
 }
 

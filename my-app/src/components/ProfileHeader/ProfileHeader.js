@@ -1,9 +1,12 @@
 import "./ProfileHeader.scss"
 import { useForm } from "react-hook-form"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { updateUserData } from '../../features/userData/userDataThunks'
+import { useDispatch } from "react-redux"
 
 const ProfileHeader = ({ firstName, lastName }) => {
+  const dispatch = useDispatch()
+
   const {
     register,
     handleSubmit,
@@ -28,7 +31,8 @@ const ProfileHeader = ({ firstName, lastName }) => {
     const firstName = data.firstName
     const lastName = data.lastName
     console.log( `${firstName}, ${lastName}`)
-    // dispatch(updateUserData({ firstName, lastName }))
+    dispatch(updateUserData({ firstName, lastName }))
+    setIsUpdating(!isUpdating)
   }
 
   return (
@@ -71,8 +75,8 @@ const ProfileHeader = ({ firstName, lastName }) => {
             </div>
           </div>
           <div className="buttons-group">
-            <button type="submit">Save</button>
-            <button onClick={toggleForm}>Cancel</button>
+            <button className="main-button" type="submit">Save</button>
+            <button className="main-button" onClick={toggleForm}>Cancel</button>
           </div>
         </form>
       )}
