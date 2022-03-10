@@ -1,12 +1,25 @@
 import "./ProfileHeader.scss"
-import { useForm } from "react-hook-form"
-import { useState } from "react"
-import { updateUserData } from '../../features/userData/userDataThunks'
-import { useDispatch } from "react-redux"
 
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { useDispatch } from "react-redux"
+import { updateUserData } from '../../features/userData/userDataThunks'
+
+/**
+ * Profile Header with User-update Form appearing at toggle
+ * @param {string} firstName fetched data from Profile Page
+ * @param {string} lastName fetched data from Profile Page
+ * @returns {React Element}
+ */
 const ProfileHeader = ({ firstName, lastName }) => {
+  const [isUpdating, setIsUpdating] = useState(false)
   const dispatch = useDispatch()
 
+  /**
+   * User-update Form config with react-hook-form
+   * onTouched = validation strategy before user submit the form
+   * defaultValues = to have pre-filled fields with data from global state
+   */
   const {
     register,
     handleSubmit,
@@ -19,18 +32,25 @@ const ProfileHeader = ({ firstName, lastName }) => {
       lastName: lastName,
     }
   })
-  const [isUpdating, setIsUpdating] = useState(false)
-
+  
+  /**
+   * Toggle to show or hide user-update Form
+   * including reset function to actualise inputs' defaultValues
+   */
   const toggleForm = () => {
     setIsUpdating(!isUpdating)
-    // reset form fields with actual defaultValues
-    reset()
+    reset({
+      firstName: firstName,
+      lastName: lastName,
+    })
   }
-
+  /**
+   * 
+   * @param {object} data get data from Form fields
+   */
   const handleUpdateUser = (data) => {
     const firstName = data.firstName
     const lastName = data.lastName
-    console.log( `${firstName}, ${lastName}`)
     dispatch(updateUserData({ firstName, lastName }))
     setIsUpdating(!isUpdating)
   }
@@ -55,7 +75,6 @@ const ProfileHeader = ({ firstName, lastName }) => {
               <input
                 type="text"
                 {...register("firstName", {
-                  // value: firstName,
                   required: "Please enter a first name",
                   minLength: { value: 2, message: "min 2 characters" },
                 })}
@@ -66,7 +85,6 @@ const ProfileHeader = ({ firstName, lastName }) => {
               <input
                 type="lastname"
                 {...register("lastName", {
-                  // value: lastName,
                   required: "Please enter a last name",
                   minLength: { value: 2, message: "min 2 characters" },
                 })}
