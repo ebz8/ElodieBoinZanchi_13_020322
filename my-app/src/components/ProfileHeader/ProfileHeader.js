@@ -1,67 +1,82 @@
 import "./ProfileHeader.scss"
 import { useForm } from "react-hook-form"
+import { useEffect, useState } from "react"
+import { updateUserData } from '../../features/userData/userDataThunks'
 
 const ProfileHeader = ({ firstName, lastName }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    reset,
+    formState: { errors },
   } = useForm({
     mode: "onTouched",
+    defaultValues: {
+      firstName: firstName,
+      lastName: lastName,
+    }
   })
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const toggleForm = () => {
-    console.log("afficher / cacherle formulaire")
+    setIsUpdating(!isUpdating)
+    // reset form fields with actual defaultValues
+    reset()
   }
 
   const handleUpdateUser = (data) => {
-    const email = data.username
-    const password = data.password
-    // dispatch(login({ email, password }))
+    const firstName = data.firstName
+    const lastName = data.lastName
+    console.log( `${firstName}, ${lastName}`)
+    // dispatch(updateUserData({ firstName, lastName }))
   }
 
   return (
     <div className="profile-header">
-    {/* si toggle inactif */}
-      <h1>Welcome back <br />{firstName + ' ' + lastName}!</h1>
-      <button className="main-button">Edit Name</button>
-    {/* si toggle actif : <h1>Welcome back</h1> + formulaire + btn*/}
+      {!isUpdating ? (
+        <>
+          <h1>
+            Welcome back <br />
+            {firstName + " " + lastName}!
+          </h1>
+          <button className="main-button" onClick={toggleForm}>
+            Edit Name
+          </button>
+        </>
+      ) : (
+        <form onSubmit={handleSubmit(handleUpdateUser)}>
+          <h1>Welcome back</h1>
+          <div className="inputs-group">
+            <div className="form-group firstname">
+              <input
+                type="text"
+                {...register("firstName", {
+                  // value: firstName,
+                  required: "Please enter a first name",
+                  minLength: { value: 2, message: "min 2 characters" },
+                })}
+              />
+              {errors.firstName && <span>{errors.firstName.message}</span>}
+            </div>
+            <div className="form-group lastname">
+              <input
+                type="lastname"
+                {...register("lastName", {
+                  // value: lastName,
+                  required: "Please enter a last name",
+                  minLength: { value: 2, message: "min 2 characters" },
+                })}
+              />
+              {errors.lastName && <span>{errors.lastName.message}</span>}
+            </div>
+          </div>
+          <div className="buttons-group">
+            <button type="submit">Save</button>
+            <button onClick={toggleForm}>Cancel</button>
+          </div>
+        </form>
+      )}
     </div>
-    // <div className="profile-header">
-    //   <form onSubmit={handleSubmit(handleUpdateUser)}>
-    //     <h1>Welcome back</h1>
-    //     <div className="inputs-group">
-    //       <div className="form-group firstname">
-    //         <input
-    //           type="text"
-    //           {...register("firstName", {
-    //             value: firstName,
-    //             required: "Please enter a firstname",
-    //             minLength: { value: 2, message: "min 2 characters" },
-    //           })}
-    //         />
-    //         {errors.firstName && <span>{errors.firstName.message}</span>}
-    //       </div>
-    //       <div className="form-group lastname">
-    //         <input
-    //           type="lastname"
-    //           {...register("lastname", {
-    //             value: lastName,
-    //             required: "Please enter a lastName",
-    //             minLength: { value: 2, message: "min 2 characters" },
-    //           })}
-    //         />
-    //         {errors.lastName && <span>{errors.lastName.message}</span>}
-    //       </div>
-    //     </div>
-    //     <div className="buttons-group">
-    //       <button type="submit" disabled={isSubmitting}>
-    //         Save
-    //       </button>
-    //       <button onClick={toggleForm}>Cancel</button>
-    //     </div>
-    //   </form>
-    // </div>
   )
 }
 

@@ -7,11 +7,11 @@ import AccountCard from '../../components/AccountCard/AccountCard'
 import { useSelector } from 'react-redux'
 
 const UserPage = () => {
-  const { userData } = useSelector((state) => state.auth)
+  const { firstName, lastName } = useSelector((state) => state.user)
 
   return (
     <PageContainer title='Profile'>
-      <ProfileHeader firstName={userData.firstName} lastName={userData.lastName}/>
+      <ProfileHeader firstName={firstName} lastName={lastName}/>
       <AccountCard
         checking="8349"
         amount="2,082.79"/>

@@ -8,7 +8,7 @@ import { logout } from '../../features/authentication/authenticationThunks'
 
 
 const MainNav = () => {
-  const { fulfilled, userData } = useSelector((state) => state.auth)
+  const { fetchedData, firstName } = useSelector((state) => state.user)
   const dispatch = useDispatch()
   
   const handleLogout = () => {
@@ -18,9 +18,9 @@ const MainNav = () => {
   return (
     <nav className="main-nav">
       <Logo />
-      {fulfilled ? (
+      {fetchedData ? (
         <div className='nav-items'>
-          <NavButton path={`/profile`} name={userData.firstName}/>
+          <NavButton path={`/profile`} name={firstName}/>
           <NavButton path={`/`} name='Logout' action={handleLogout}/>
         </div>
         )
