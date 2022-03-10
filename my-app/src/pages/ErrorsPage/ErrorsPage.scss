@@ -1,0 +1,26 @@
+@import '../../app/style/mixins.scss';
+
+.oops-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    font-size: 2rem;
+    gap: 1rem;
+
+    a{
+        text-decoration: underline;
+        color: $mainColor;
+    }
+
+    .error-message {
+        font-weight: bold;
+    }
+
+    .error-code {
+        padding-top: 3rem;
+        font-size: 1rem;
+        color: $neutralLight;
+    }
+}

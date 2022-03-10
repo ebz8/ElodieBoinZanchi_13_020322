@@ -1,36 +1,37 @@
-import './App.scss'
+import "./App.scss"
 
-import { useEffect } from 'react'
+import { useEffect } from "react"
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
 // import { ToastContainer } from 'react-toastify'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUserData } from './features/userData/userDataThunks'
+import { useDispatch, useSelector } from "react-redux"
+import { getUserData } from "./features/userData/userDataThunks"
 
-import HomePage from './pages/HomePage/HomePage'
-import LoginPage from './pages/LoginPage/LoginPage'
-import UserPage from './pages/UserPage/UserPage'
-import Error404 from './components/Error404/Error404'
-
+import HomePage from "./pages/HomePage/HomePage"
+import LoginPage from "./pages/LoginPage/LoginPage"
+import UserPage from "./pages/UserPage/UserPage"
+import ErrorsPage from "./pages/ErrorsPage/ErrorsPage"
 
 function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { connected } = useSelector((state) => state.auth)
-  const { fetchedData } = useSelector((state) => state.user)
+  const { fetchedData, loading } = useSelector((state) => state.user)
 
-  useEffect(()=> {
+  useEffect(() => {
     connected && dispatch(getUserData())
-    fetchedData && navigate('/profile')
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchedData && navigate("/profile")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connected, fetchedData])
-  
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<HomePage />}/>
-        <Route path='/login' element={<LoginPage />}/>
-        <Route path="/profile" element={fetchedData ? (<UserPage />) : (<Navigate to='/login'/>)}/>
-        <Route path="/*" element={<Error404 />}/>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/profile"
+          element={fetchedData ? <UserPage /> : <Navigate to="/login" />}
+        />
+        <Route path="/*" element={<ErrorsPage />} />
       </Routes>
       {/* <ToastContainer /> */}
     </div>

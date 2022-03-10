@@ -4,8 +4,11 @@ import MainNav from '../MainNav/MainNav'
 import Footer from '../Footer/Footer'
 
 import { useEffect } from 'react'
+// import { useSelector } from 'react-redux'
 
 const PageContainer = ({children, title}) => {
+  // const { loading } = useSelector((state) => state.user)
+
 
   // to always have the correct meta title 
   useEffect( () => {

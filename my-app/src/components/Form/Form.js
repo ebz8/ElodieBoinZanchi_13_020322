@@ -3,9 +3,12 @@ import { FaUserCircle } from "react-icons/fa"
 
 import { useForm } from "react-hook-form"
 import { login } from "../../features/authentication/authenticationThunks"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 function Form() {
+  const { error } = useSelector((state) => state.auth)
+  // const { loading } = useSelector((state) => state.user)
+
   const {
     register,
     handleSubmit,
@@ -56,6 +59,7 @@ function Form() {
             Remember me
           </label>
         </div>
+        {error && <p className="error-message">Incorrect credentials</p>}
         <button type="submit" className="main-button" disabled={isSubmitting}>
           Sign In
         </button>
