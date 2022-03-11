@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { login, logout } from './authenticationThunks'
 
 // mettre des types token: booleann etc.
-// ici garder seulement token, loading, error, connected
 const initialState = {
     token: false,
     loading: false,

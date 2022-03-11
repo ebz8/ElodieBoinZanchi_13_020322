@@ -5,10 +5,18 @@ import { useForm } from "react-hook-form"
 import { login } from "../../features/authentication/authenticationThunks"
 import { useDispatch, useSelector } from "react-redux"
 
+/**
+ * Login Form
+ * @returns {ReactElement}
+ */
 function Form() {
   const { error } = useSelector((state) => state.auth)
-  // const { loading } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
 
+    /**
+   * User-update Form config with react-hook-form
+   * onTouched = validation strategy before user submit the form
+   */
   const {
     register,
     handleSubmit,
@@ -16,8 +24,11 @@ function Form() {
   } = useForm({
     mode: "onTouched",
   })
-  const dispatch = useDispatch()
 
+  /**
+   * Login thunk dispatch with Form's data
+   * @param {object} data get data from Form fields
+   */
   const handleLogin = (data) => {
     const email = data.username
     const password = data.password

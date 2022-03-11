@@ -45,7 +45,7 @@ const ProfileHeader = ({ firstName, lastName }) => {
     })
   }
   /**
-   * 
+   * Update-user thunk
    * @param {object} data get data from Form fields
    */
   const handleUpdateUser = (data) => {

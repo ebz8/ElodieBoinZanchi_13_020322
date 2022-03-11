@@ -12,10 +12,16 @@
 
     .nav-items {
         display: flex;
-        gap: .5rem;
+        gap: .8rem;
         
         .nav-btn {
+            display: flex;
+            align-items: center;
             margin-right: 0.5rem;
+
+            svg {
+                font-size: 1.2rem;
+            }
         }
     }
 

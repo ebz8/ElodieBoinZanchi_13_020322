@@ -1,16 +1,10 @@
 import './NavButton.scss'
 
-import { FaUserCircle } from 'react-icons/fa'
+import { FaUserCircle, FaSignOutAlt } from 'react-icons/fa'
 
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { userSelector, useDispatch } from 'react-redux'
-import { logout } from '../../features/authentication/authenticationThunks'
+import { Link } from 'react-router-dom'
 
-const NavButton = ({path, name, action}) => {
-  // const navigate = useNavigate()
-  const dispatch = useDispatch()
-  // const { user } = useSelector((state) => state.auth)
-  //        <Link to={path} className="nav-btn" onClick={dispatch(logout())}>
+const NavButton = ({ path, name, action }) => {
 
   
 
@@ -19,7 +13,7 @@ const NavButton = ({path, name, action}) => {
     {action ?
       <Link to={path} className="nav-btn" onClick={action} >
           {/* condition pour autres icônes */}
-          <FaUserCircle />
+          {name === 'Sign Out' ? <FaSignOutAlt/> : <FaUserCircle />}          
           <p>{name}</p>
       </Link>
     :

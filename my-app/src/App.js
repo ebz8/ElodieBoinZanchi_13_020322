@@ -2,7 +2,6 @@ import "./App.scss"
 
 import { useEffect } from "react"
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
-// import { ToastContainer } from 'react-toastify'
 import { useDispatch, useSelector } from "react-redux"
 import { getUserData } from "./features/userData/userDataThunks"
 
@@ -33,7 +32,6 @@ function App() {
         />
         <Route path="/*" element={<ErrorsPage />} />
       </Routes>
-      {/* <ToastContainer /> */}
     </div>
   )
 }
