@@ -40,19 +40,18 @@
         }
     }
 
-    .account-content:nth-child(2) {
+    .main-button {
         align-self: center;
+        font-size: 1.1rem;
+        min-width: 5.3rem;
 
-        .main-button {
-            font-size: 1.1rem;
-
-            @include mobile-large {
-                font-size: .9rem;
-            }
-          
-            @include mobile {
-                font-size: .7rem;
-            }
+        @include mobile-large {
+            font-size: .9rem;
         }
+          
+        @include mobile {
+            width: 30%;
+            font-size: .7rem;
+        }        
     }
 }

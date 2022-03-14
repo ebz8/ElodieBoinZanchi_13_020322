@@ -8,10 +8,8 @@ const AccountCard = ({checking, amount, desc}) => {
             <p className="amount">${amount}</p>
             <p>Available Balance</p>
         </div>
-        <div className="account-content">
-            <button className="main-button">View transactions</button>
+          <button className="main-button">View transactions</button>
         </div>
-    </div>
   )
 }
 
