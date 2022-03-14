@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { api, getToken, setToken, removeToken } from '../../app/services/api'
+import { api, getToken, setToken, removeToken } from '../../services/api'
 import axios from 'axios'
 
 

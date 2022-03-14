@@ -3,7 +3,7 @@ import "./App.scss"
 import { useEffect } from "react"
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { getUserData } from "./features/userData/userDataThunks"
+import { getUserData } from "./store/userData/userDataThunks"
 
 import HomePage from "./pages/HomePage/HomePage"
 import LoginPage from "./pages/LoginPage/LoginPage"

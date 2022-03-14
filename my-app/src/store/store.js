@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import authentication from '../features/authentication/authentication'
-import userData from '../features/userData/userData'
+import authentication from './authentication/authentication'
+import userData from './userData/userData'
 
 export const store = configureStore({
   reducer: {

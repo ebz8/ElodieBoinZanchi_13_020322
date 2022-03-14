@@ -3,7 +3,7 @@ import "./ProfileHeader.scss"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
-import { updateUserData } from '../../features/userData/userDataThunks'
+import { updateUserData } from '../../store/userData/userDataThunks'
 
 /**
  * Profile Header with User-update Form appearing at toggle

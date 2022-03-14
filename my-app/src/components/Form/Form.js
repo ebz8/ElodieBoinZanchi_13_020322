@@ -2,7 +2,7 @@ import "./Form.scss"
 import { FaUserCircle } from "react-icons/fa"
 
 import { useForm } from "react-hook-form"
-import { login } from "../../features/authentication/authenticationThunks"
+import { login } from "../../store/authentication/authenticationThunks"
 import { useDispatch, useSelector } from "react-redux"
 
 /**

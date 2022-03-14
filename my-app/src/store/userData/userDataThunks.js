@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { api, getToken, removeToken } from '../../app/services/api'
+import { api, getToken, removeToken } from '../../services/api'
 import axios from 'axios'
 
 // fetch user data : action appelée quand un jeton est dans le localStorage
