@@ -21,14 +21,15 @@ export const authentication = createSlice({
             state.loading = true
         })
         .addCase(login.fulfilled, (state, action) => {
+            console.log(action)
             state.loading = false
             state.error = false
             state.token = action.payload.body
             state.connected = true
         })
-        .addCase(login.rejected, (state) => {
+        .addCase(login.rejected, (state, action) => {
             state.loading = false
-            state.error = true
+            state.error = action.error.message
             state.token = false
             state.connected = false
         })

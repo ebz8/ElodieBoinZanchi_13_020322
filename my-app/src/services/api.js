@@ -1,5 +1,13 @@
+import axios from 'axios'
+
 // config URLS
 export const api = 'http://localhost:3001/api/v1/user/'
+export const instance = axios.create({
+    baseURL: "http://localhost:3001/api/v1/user/",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
 
 // tokens
 export const getToken = () => {

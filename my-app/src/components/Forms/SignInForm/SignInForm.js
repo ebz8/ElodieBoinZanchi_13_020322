@@ -1,15 +1,15 @@
-import "./Form.scss"
+import "./SignInForm.scss"
 import { FaUserCircle } from "react-icons/fa"
 
 import { useForm } from "react-hook-form"
-import { login } from "../../store/authentication/authenticationThunks"
+import { login } from "../../../store/authentication/authenticationThunks"
 import { useDispatch, useSelector } from "react-redux"
 
 /**
  * Login Form
  * @returns {ReactElement}
  */
-function Form() {
+function SignInForm() {
   const { error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
@@ -70,7 +70,7 @@ function Form() {
             Remember me
           </label>
         </div>
-        {error && <p className="error-message">Incorrect credentials</p>}
+        {error && <p className="error-message">{error}</p>}
         <button type="submit" className="main-button" disabled={isSubmitting}>
           Sign In
         </button>
@@ -79,4 +79,4 @@ function Form() {
   )
 }
 
-export default Form
+export default SignInForm
