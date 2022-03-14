@@ -17,14 +17,14 @@ const MainNav = () => {
 
   return (
     <nav className="main-nav">
-      <Logo />
+      <Logo center={fetchedData ? true : false}/>
       {fetchedData ? (
         <div className='nav-items'>
           <NavButton path={`/profile`} name={firstName}/>
           <NavButton path={`/`} name='Sign Out' action={handleLogout}/>
         </div>
         )
-      : <NavButton className='nav-items' path={`/login`} name='Sign In'/> }
+      : <NavButton path={`/login`} name='Sign In'/> }
     </nav>
   )
 }

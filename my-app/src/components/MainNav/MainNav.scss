@@ -8,7 +8,6 @@
     padding: rem(5) rem(20);
 
     @include mobile {
-        // flex-flow: column wrap;
         padding: rem(5) rem(10);
     }
 
@@ -19,13 +18,13 @@
             width: rem(150);
         }
 
-        @include mobile {
-            align-self: flex-start;
-        }
-
         @include mobile-small {
             width: rem(120);
             margin-bottom: -0.2rem;
+        }
+        
+        &.center {
+            margin: auto;
         }
     }
 
