@@ -6,7 +6,7 @@ const initialState = {
     token: false,
     loading: false,
     error: false,
-    connected: Boolean(localStorage.getItem('token')),
+    connected: false,
 }
 
 export const authentication = createSlice({
@@ -21,11 +21,10 @@ export const authentication = createSlice({
             state.loading = true
         })
         .addCase(login.fulfilled, (state, action) => {
-            console.log(action)
             state.loading = false
             state.error = false
-            state.token = action.payload.body
-            state.connected = true
+            state.token = action.payload.body.token
+            state.connected = action.payload.message
         })
         .addCase(login.rejected, (state, action) => {
             state.loading = false

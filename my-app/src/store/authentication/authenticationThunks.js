@@ -8,17 +8,13 @@ export const login = createAsyncThunk('auth/login', async (data) => {
     instance.interceptors.response.use(
         (response) => { // Any status code from range of 2xx
             setToken(response.data.body.token)
-            console.log(response.status)
-            console.log(response)
             return response
         },
         (error) => { // Any status codes outside range of 2xx
             const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-          return Promise.reject(message)
+            return Promise.reject(message)
         })
-
     const response = await instance.post(api + 'login', data)
-
     return response.data
 })
 
@@ -42,15 +38,23 @@ export const logout = createAsyncThunk('auth/signOut', async () => {
 // fetch user data : action appelée quand un jeton est dans le localStorage
 // s'il ne l'est plus : reset
 export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejectWithValue}) => {
+    const accessToken = getToken()
+
     try {
-        const accessToken = getToken()
-        const response = await axios({
-            method: 'post',
-            url: api + 'profile',
-            headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-        })
+        instance.interceptors.request.use(
+            (config) => { // Any status code from range of 2xx
+                if (accessToken) {
+                    config.headers['Authorization'] = `Bearer ${accessToken}`
+                }
+                return config
+            },
+            (error) => { // Any status codes outside range of 2xx
+                const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+                return Promise.reject(message)
+            })
+
+            const response = await instance.post(api + 'profile')
+
         return {...response.data, accessToken}
     } catch (error) {
         // removeToken()
@@ -58,21 +62,22 @@ export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejec
         return rejectWithValue(message)
     }
 })
+
+
+
 // export const getUserData = createAsyncThunk('auth/getUserData', async (_, {rejectWithValue}) => {
 //     try {
 //         const accessToken = getToken()
-//         console.log('coucou depuis getUserData')
-//         // Un "Bearer Token" est un JWT dont le rôle est d'indiquer que l'utilisateur qui accède aux ressources est bien authentifié
-//         // api.defaults.headers.Authorization = `Bearer ${accessToken}`
-//         const response = await axios.post(api + 'profile',  {
+//         const response = await axios({
+//             method: 'post',
+//             url: api + 'profile',
 //             headers: {
-//               Authorization: `Bearer ${accessToken}`
-//             }
-//           })
-//         console.log(response)
+// 				Authorization: `Bearer ${accessToken}`,
+// 			},
+//         })
 //         return {...response.data, accessToken}
 //     } catch (error) {
-//         removeToken()
+//         // removeToken()
 //         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
 //         return rejectWithValue(message)
 //     }
