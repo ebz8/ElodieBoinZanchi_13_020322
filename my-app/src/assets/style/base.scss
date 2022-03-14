@@ -1,0 +1,31 @@
+@import './mixins.scss';
+//
+// app basis
+//
+body {
+    margin: 0;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .App {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: $secondaryColor;
+  }
+
+  .main-button {
+    padding: rem(8);
+    background-color: $mainColor;
+    color: white;
+    font-weight: bold;
+
+    &:hover {
+      background:darken($mainColor,8%);
+      transition: all 0.3s ease;
+    }
+    &:active {
+      background:darken($mainColor,25%);
+    }
+}
