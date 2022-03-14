@@ -6,6 +6,11 @@ import AccountCard from '../../components/AccountCard/AccountCard'
 
 import { useSelector } from 'react-redux'
 
+/**
+ * User profile with overview of his different bank accounts and transactions
+ * Retrieves global state fetched data
+ * @returns {ReactElement}
+ */
 const UserPage = () => {
   const { firstName, lastName } = useSelector((state) => state.user)
 

@@ -5,7 +5,7 @@ import { login, logout } from './authenticationThunks'
 const initialState = {
     token: false,
     loading: false,
-    error: false,
+    authError: false,
     connected: false,
 }
 
@@ -22,19 +22,20 @@ export const authentication = createSlice({
         })
         .addCase(login.fulfilled, (state, action) => {
             state.loading = false
-            state.error = false
+            state.authError = false
             state.token = action.payload.body.token
             state.connected = action.payload.message
         })
         .addCase(login.rejected, (state, action) => {
             state.loading = false
-            state.error = action.error.message
+            state.authError = action.error.message
             state.token = false
             state.connected = false
         })
         .addCase(logout.fulfilled, (state) => {
             state.token = false
             state.connected = false
+            state.authError = false
         })
     }
 })

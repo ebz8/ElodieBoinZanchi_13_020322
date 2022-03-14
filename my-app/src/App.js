@@ -14,7 +14,6 @@ import ErrorsPage from "./pages/ErrorsPage/ErrorsPage"
 function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  // connected = token in localStorage
   const { connected } = useSelector((state) => state.auth)
   const { fetchedData, loading } = useSelector((state) => state.user)
 

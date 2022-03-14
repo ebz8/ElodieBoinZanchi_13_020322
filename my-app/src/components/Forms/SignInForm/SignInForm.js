@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux"
  * @returns {ReactElement}
  */
 function SignInForm() {
-  const { error } = useSelector((state) => state.auth)
+  const { authError } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
     /**
@@ -70,7 +70,7 @@ function SignInForm() {
             Remember me
           </label>
         </div>
-        {error && <p className="error-message">{error}</p>}
+        {authError && <p className="error-message">{authError}</p>}
         <button type="submit" className="main-button" disabled={isSubmitting}>
           Sign In
         </button>

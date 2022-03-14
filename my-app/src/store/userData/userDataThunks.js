@@ -1,10 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { instance, getToken, removeToken } from "../../services/api"
 
-// fetch user data : action appelée quand un jeton est dans le localStorage
+/**
+ * Api call when an user is logged in to retrieve his data 
+ */
 export const getUserData = createAsyncThunk(
   "auth/getUserData",
-  async (_, { rejectWithValue }) => {
+  async () => {
     const accessToken = getToken()
     instance.interceptors.request.use(
       (config) => {
