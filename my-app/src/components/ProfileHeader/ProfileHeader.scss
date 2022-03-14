@@ -8,14 +8,28 @@
     h1 {
         font-weight: bold;
         margin-bottom: 1rem;
+
+        @include mobile-large {
+            font-size: 1.5rem;
+        }
     }
 
     .inputs-group {
         display: flex;
         gap: 1rem;
 
+        @include mobile {
+            flex-flow: column wrap;
+            gap: .5rem;
+        }
+
         input {
             height: 2rem;
+
+            @include mobile-large {
+                width: 90%;
+                gap: 0;
+            }
         }
     }
 
@@ -29,8 +43,16 @@
         gap: .5rem;
         margin-top: 1rem;
 
-        button {
+        .main-button {
             width: 5rem;
+
+            @include mobile-large {
+                font-size: .9rem;
+            }
+          
+            @include mobile {
+                font-size: .7rem;
+            }
         }
     }
 }

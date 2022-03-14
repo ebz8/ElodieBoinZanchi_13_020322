@@ -2,17 +2,43 @@
 
 .main-nav {
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
     padding: rem(5) rem(20);
 
+    @include mobile {
+        // flex-flow: column wrap;
+        padding: rem(5) rem(10);
+    }
+
     .logo {
         width: rem(200);
+
+        @include mobile-large {
+            width: rem(150);
+        }
+
+        @include mobile {
+            align-self: flex-start;
+        }
+
+        @include mobile-small {
+            width: rem(120);
+            margin-bottom: -0.2rem;
+        }
     }
 
     .nav-items {
         display: flex;
         gap: .8rem;
+
+        @include mobile {
+            width: 100%;
+            justify-content: flex-end;
+            align-self: flex-end;
+            padding-bottom: .5rem;
+        }
         
         .nav-btn {
             display: flex;

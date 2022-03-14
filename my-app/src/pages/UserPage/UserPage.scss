@@ -9,4 +9,12 @@
     gap: 1rem;
     padding: 2rem;
     background-color: $neutralDark;
+
+    @include tablet {
+        padding: 2rem 1.5rem;
+    }
+
+    @include mobile-large {
+        padding: 1rem 1rem;
+    }
 }

@@ -22,6 +22,20 @@
             margin-top: 1rem;
             font-size: 1.2rem;
         }
+
+        @include mobile-large {
+            top: rem(80);
+            width: 80vw;
+            right: 0;
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .text {
+                font-size: 1rem;
+            }
+        }
     }
 
     img {

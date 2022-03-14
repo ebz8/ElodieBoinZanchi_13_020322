@@ -7,6 +7,10 @@
     background-color: white;
     padding: 2rem;
 
+    @include mobile {
+        padding: 1rem;
+    }
+
     form {
         display: flex;
         flex-flow: column wrap;

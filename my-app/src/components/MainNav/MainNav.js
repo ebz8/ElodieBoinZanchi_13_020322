@@ -24,7 +24,7 @@ const MainNav = () => {
           <NavButton path={`/`} name='Sign Out' action={handleLogout}/>
         </div>
         )
-      : <NavButton path={`/login`} name='Sign In'/> }
+      : <NavButton className='nav-items' path={`/login`} name='Sign In'/> }
     </nav>
   )
 }

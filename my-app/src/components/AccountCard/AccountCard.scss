@@ -7,9 +7,37 @@
     background-color: white;
     padding: 1.5rem;
 
+    @include tablet {
+        width: 90%;
+    }
+
+    @include mobile-large {
+        width: 95%;
+        font-size: .9rem;
+        padding: 1.1rem;
+    }
+
+    @include mobile {
+        width: 100%;
+        font-size: .8rem;
+    }
+
+    @include mobile-small {
+        width: 100%;
+        font-size: .6rem;
+    }
+
     .amount {
         font-size: 2.5rem;
         font-weight: bold;
+
+        @include mobile-large {
+            font-size: 2rem;
+        }
+
+        @include mobile {
+            font-size: 1.3rem;
+        }
     }
 
     .account-content:nth-child(2) {
@@ -17,6 +45,14 @@
 
         .main-button {
             font-size: 1.1rem;
+
+            @include mobile-large {
+                font-size: .9rem;
+            }
+          
+            @include mobile {
+                font-size: .7rem;
+            }
         }
     }
 }

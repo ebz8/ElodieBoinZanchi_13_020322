@@ -5,8 +5,12 @@
     .features {
         display: flex;
         justify-content: space-around;
-        align-items: center;
+        // align-items: center;
         flex-flow: row nowrap;
         text-align: center;
+
+        @include mobile-large {
+            flex-flow: column wrap;
+        }
     }
 }
