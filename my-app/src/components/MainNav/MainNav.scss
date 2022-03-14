@@ -24,7 +24,9 @@
         }
         
         &.center {
-            margin: auto;
+            @include mobile {
+                margin: auto;
+            }
         }
     }
 
