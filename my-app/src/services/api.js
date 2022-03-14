@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-// config URLS
-// export const api = 'http://localhost:3001/api/v1/user/'
+// config URL
 export const instance = axios.create({
     baseURL: "http://localhost:3001/api/v1/user/",
     headers: {

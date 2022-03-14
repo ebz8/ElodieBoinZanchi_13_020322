@@ -26,5 +26,4 @@ export const login = createAsyncThunk("auth/login", async (data) => {
 
 export const logout = createAsyncThunk("auth/signOut", async () => {
   removeToken()
-  console.log("token retiré du localStorage")
 })

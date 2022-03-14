@@ -17,7 +17,6 @@ export const getUserData = createAsyncThunk(
       (error) => {
         // Any status codes outside range of 2xx
         removeToken()
-        console.log("token retiré du localStorage")
         const message =
           (error.response &&
             error.response.data &&
@@ -56,7 +55,6 @@ export const updateUserData = createAsyncThunk(
         return Promise.reject(message)
       }
     )
-
     const response = await instance.put("profile")
     return { ...response.data }
   }
