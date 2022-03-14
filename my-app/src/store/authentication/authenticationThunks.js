@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { setToken, removeToken } from "../../services/api"
-import { instance } from "../../services/api"
+import { instance, setToken, removeToken } from "../../services/api"
 
 export const login = createAsyncThunk("auth/login", async (data) => {
   instance.interceptors.response.use(
