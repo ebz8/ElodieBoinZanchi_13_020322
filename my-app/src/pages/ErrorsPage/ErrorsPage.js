@@ -8,14 +8,17 @@ import { useSelector } from 'react-redux'
  * @returns {ReactElement}
  */
 function ErrorsPage() {
-  const { authError } = useSelector((state) => state.auth)
+  const { authError, connected } = useSelector((state) => state.auth)
+  const { userDataError } = useSelector((state) => state.user)
 
   return (
     <PageContainer title='Oops'>
       <p className='error-message'>Sorry, we can't find that page.</p>
-      <Link to='/'> Back to Homepage </Link>
-      {authError ? <p className='error-code'>ErrorCode : {authError}</p>
-      : <p className='error-code'>ErrorCode : errorCode</p>}
+      {connected ? <Link to='/profile'> Go back to my profile </Link>
+      : <Link to='/'> Go back to Homepage </Link>}
+      {authError ? <p className='error-code'>ErrorCode: {authError}</p>
+      : userDataError ? <p className='error-code'>ErrorCode: {userDataError}</p>
+      : <p className='error-code'>This link might be invalid or the page might have been deleted. Check whether the link you are trying to open is correct.</p>}
     </PageContainer>
   )
 }

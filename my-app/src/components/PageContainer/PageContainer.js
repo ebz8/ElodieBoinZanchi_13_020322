@@ -2,8 +2,13 @@ import MainNav from '../MainNav/MainNav'
 import Footer from '../Footer/Footer'
 
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+
+import Loader from "../Loader/Loader"
 
 const PageContainer = ({children, title}) => {
+  const { loading } = useSelector((state) => state.auth)
+  const { loadingData } = useSelector((state) => state.user)
 
   // to always have the correct meta title 
   useEffect( () => {
@@ -14,7 +19,9 @@ const PageContainer = ({children, title}) => {
   return (
     <>
       <MainNav />
-        <main className={`${title.toLowerCase()}-content`}>{children}</main>
+      {loading || loadingData ? <Loader/>
+      : <main className={`${title.toLowerCase()}-content`}>{children}</main>
+      }
       <Footer />
     </>
   )

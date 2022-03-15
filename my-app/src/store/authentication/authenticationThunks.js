@@ -3,9 +3,7 @@ import { instance, setToken, removeToken } from "../../services/api"
 
 export const login = createAsyncThunk("auth/login", async (data) => {
   instance.interceptors.response.use(
-    (response) => {
-      // Any status code from range of 2xx
-      setToken(response.data.body.token)
+    (response) => {      
       return response
     },
     (error) => {
@@ -20,6 +18,7 @@ export const login = createAsyncThunk("auth/login", async (data) => {
     }
   )
   const response = await instance.post("login", data)
+  setToken(response.data.body.token)
   return response.data
 })
 

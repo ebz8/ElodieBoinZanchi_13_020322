@@ -4,6 +4,9 @@ import { FaUserCircle } from "react-icons/fa"
 import { useForm } from "react-hook-form"
 import { login } from "../../../store/authentication/authenticationThunks"
 import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { getUserData } from "../../../store/userData/userDataThunks"
 
 /**
  * Login Form
@@ -11,7 +14,10 @@ import { useDispatch, useSelector } from "react-redux"
  */
 function SignInForm() {
   const { authError } = useSelector((state) => state.auth)
+  const { fetchedData } = useSelector((state) => state.user)
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
     /**
    * User-update Form config with react-hook-form
@@ -34,6 +40,11 @@ function SignInForm() {
     const password = data.password
     dispatch(login({ email, password }))
   }
+
+  useEffect(() => {
+    fetchedData && navigate("/profile")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchedData])
 
   // if (isLoading)
   // if isSubmitSuccessful

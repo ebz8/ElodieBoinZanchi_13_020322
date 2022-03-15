@@ -2,7 +2,7 @@ import "./assets/style/reset.scss"
 import "./assets/style/base.scss"
 
 import { useEffect } from "react"
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserData } from "./store/userData/userDataThunks"
 
@@ -10,18 +10,17 @@ import HomePage from "./pages/HomePage/HomePage"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import UserPage from "./pages/UserPage/UserPage"
 import ErrorsPage from "./pages/ErrorsPage/ErrorsPage"
+// import Loader from "./components/Loader/Loader"
 
 function App() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { connected } = useSelector((state) => state.auth)
-  const { fetchedData, loading } = useSelector((state) => state.user)
+  const { fetchedData } = useSelector((state) => state.user)
 
   useEffect(() => {
     connected && dispatch(getUserData())
-    fetchedData && navigate("/profile")
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [connected, fetchedData])
+  }, [connected])
   return (
     <div className="App">
       <Routes>
