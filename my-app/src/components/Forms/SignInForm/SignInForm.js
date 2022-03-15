@@ -28,6 +28,9 @@ function SignInForm() {
     formState: { errors, isSubmitting },
   } = useForm({
     mode: "onTouched",
+    defaultValues: {
+      rememberme : true,
+    },
   })
 
   /**
@@ -35,9 +38,10 @@ function SignInForm() {
    * @param {object} data get data from Form fields
    */
   const handleLogin = (data) => {
+    const remember = data.rememberme
     const email = data.username
     const password = data.password
-    dispatch(login({ email, password }))
+    dispatch(login({ email, password, remember }))
   }
 
   useEffect(() => {
@@ -74,9 +78,9 @@ function SignInForm() {
           />
           {errors.password && <span>{errors.password.message}</span>}
         </div>
-        <div className="form-group remember-me">
-          <input type="checkbox" {...register("remember-me")} />
-          <label htmlFor="remember-me" className="remember-me">
+        <div className="form-group rememberme">
+          <input type="checkbox" {...register("rememberme")} />
+          <label htmlFor="remember-me" className="rememberme">
             Remember me
           </label>
         </div>

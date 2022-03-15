@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { instance, setToken, removeToken } from "../../services/api"
+import { instance, setToken, removeToken, saveToken } from "../../services/api"
 
 export const login = createAsyncThunk("auth/login", async (data) => {
   instance.interceptors.response.use(
@@ -19,6 +19,8 @@ export const login = createAsyncThunk("auth/login", async (data) => {
   )
   const response = await instance.post("login", data)
   setToken(response.data.body.token)
+  console.log(data.remember)
+
   return response.data
 })
 
