@@ -28,7 +28,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/profile"
-          element={fetchedData ? <UserPage /> : <Navigate to="/login" />}
+          element={!connected ? <Navigate to="/login" /> : <UserPage /> }
         />
         <Route path="/*" element={<ErrorsPage />} />
       </Routes>

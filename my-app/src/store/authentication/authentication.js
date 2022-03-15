@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { login, logout } from './authenticationThunks'
 import { getToken } from '../../services/api'
+import { getUserData } from '../userData/userDataThunks'
 
 // mettre des types token: booleann etc.
 const initialState = {
@@ -23,7 +24,6 @@ export const authentication = createSlice({
         })
         .addCase(login.fulfilled, (state, action) => {
             console.log(action.payload.body.token)
-            state.loading = false
             state.authError = false
             state.token = action.payload.body.token
             state.connected = action.payload.message
@@ -38,6 +38,9 @@ export const authentication = createSlice({
             state.token = false
             state.connected = false
             state.authError = false
+        })
+        .addCase(getUserData.fulfilled, (state) => {
+            state.loading = false
         })
     }
 })

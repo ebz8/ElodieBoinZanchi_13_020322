@@ -5,7 +5,7 @@ import { logout } from '../authentication/authenticationThunks'
 // mettre des types token: boolean etc.
 const initialState = {
     loadingData: false,
-    userDataError: 'false',
+    userDataError: false,
     fetchedData: false,
     email: null,
     firstName: null,
