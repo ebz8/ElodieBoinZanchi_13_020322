@@ -1,26 +1,27 @@
 import variables from "../../assets/style/variables.scss"
-import Stack from "@mui/material/Stack"
+import Box from "@mui/material/Box"
 import { CircularProgress } from "@mui/material"
 
 function Loader() {
   return (
-    <Stack
+    <Box
       sx={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flex: 1,
+        backgroundColor: variables.neutraldark,
+
       }}
       spacing={2}
       direction="row"
     >
       <CircularProgress
         sx={{
-          width: 300,
           color: variables.maincolor,
         }}
       />
-    </Stack>
+    </Box>
   )
 }
 
