@@ -6,7 +6,6 @@ import { login } from "../../../store/authentication/authenticationThunks"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { getUserData } from "../../../store/userData/userDataThunks"
 
 /**
  * Login Form

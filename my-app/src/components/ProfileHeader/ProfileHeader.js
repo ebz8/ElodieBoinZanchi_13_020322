@@ -2,7 +2,7 @@ import "./ProfileHeader.scss"
 
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { updateUserData } from '../../store/userData/userDataThunks'
 
 /**
@@ -12,6 +12,7 @@ import { updateUserData } from '../../store/userData/userDataThunks'
  * @returns {React Element}
  */
 const ProfileHeader = ({ firstName, lastName }) => {
+  const { userDataError } = useSelector((state) => state.user)
   const [isUpdating, setIsUpdating] = useState(false)
   const dispatch = useDispatch()
 
@@ -24,7 +25,7 @@ const ProfileHeader = ({ firstName, lastName }) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     mode: "onTouched",
     defaultValues: {
@@ -52,7 +53,7 @@ const ProfileHeader = ({ firstName, lastName }) => {
     const firstName = data.firstName
     const lastName = data.lastName
     dispatch(updateUserData({ firstName, lastName }))
-    setIsUpdating(!isUpdating)
+    !userDataError && setIsUpdating(!isUpdating)
   }
 
   return (
@@ -93,9 +94,10 @@ const ProfileHeader = ({ firstName, lastName }) => {
           <div className="errors-group">
             {errors.firstName && <span className="error">{errors.firstName.message}</span>}
             {errors.lastName && <span className="error">{errors.lastName.message}</span>}
+            {userDataError && <span className="error">{userDataError}</span>}
           </div>
           <div className="buttons-group">
-            <button className="main-button" type="submit">Save</button>
+            <button className="main-button" type="submit" disabled={isSubmitting}>Save</button>
             <button className="main-button" onClick={toggleForm}>Cancel</button>
           </div>
         </form>

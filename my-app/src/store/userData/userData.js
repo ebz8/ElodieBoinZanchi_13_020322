@@ -4,7 +4,7 @@ import { logout } from '../authentication/authenticationThunks'
 
 // mettre des types token: boolean etc.
 const initialState = {
-    loadingData: false,
+    loadingUser: false,
     userDataError: false,
     fetchedData: false,
     email: null,
@@ -22,16 +22,16 @@ export const userData = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(getUserData.pending, (state) => {
-            state.loadingData = true
+            state.loadingUser = true
         })
         .addCase(getUserData.rejected, (state, action) => {
-            state.loadingData = false
+            state.loadingUser = false
             state.fetchedData = false
             state.userDataError = action.payload
             state.userData = {}
         })
         .addCase(getUserData.fulfilled, (state, action) => {
-            state.loadingData = false
+            state.loadingUser = false
             state.userDataError = false
             state.email = action.payload.body.email
             state.firstName = action.payload.body.firstName
@@ -40,14 +40,14 @@ export const userData = createSlice({
             state.fetchedData = true
         })
         .addCase(updateUserData.pending, (state) => {
-            state.loadingData = true
+            state.loadingUser = true
         })
         .addCase(updateUserData.rejected, (state, action) => {
-            state.loadingData = false
-            state.userDataError = action.payload
+            state.loadingUser = false
+            state.userDataError = action.error.message
         })
         .addCase(updateUserData.fulfilled, (state, action) => {
-            state.loadingData = false
+            state.loadingUser = false
             state.userDataError = false
             state.firstName = action.payload.body.firstName
             state.lastName = action.payload.body.lastName

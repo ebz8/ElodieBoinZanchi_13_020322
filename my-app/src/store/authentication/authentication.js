@@ -42,6 +42,9 @@ export const authentication = createSlice({
         .addCase(getUserData.fulfilled, (state) => {
             state.loading = false
         })
+        .addCase(getUserData.rejected, (state) => {
+            state.loading = false
+        })
     }
 })
 
