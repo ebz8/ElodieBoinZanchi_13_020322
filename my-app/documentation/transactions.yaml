@@ -1,0 +1,356 @@
+swagger: '2.0'
+info:
+  title: Argent Bank Transactions API
+  description: API model proposal for user transactions
+  version: '2.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+
+host: localhost:3001
+basePath: /api/v2
+schemes:
+  - http
+
+paths:
+  /accounts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Accounts Module
+      summary: List of user accounts
+      description: Get an array with one object per account with general info.
+      parameters:
+      - in: header
+        name: Authorization
+        description: Attach Bearer JWT token
+        required: true
+        type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: All the accounts retrieved successfully
+          schema:
+              $ref: '#/definitions/AccountsResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  /transactions/${checking}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Accounts Module
+      summary: List of one account transactions
+      description: Retrieves an account identification checking in parameters to returns an array with all the associated transactions.
+      parameters:
+      - in: header
+        name: Authorization
+        description: Attach Bearer JWT token
+        required: true
+        type: string
+      - in: path
+        name: checking
+        description: An account identification checking id
+        required: true
+        type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: All the transactions retrieved successfully
+          schema:
+              $ref: '#/definitions/TransactionsResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /transactions/${checking}/${id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Accounts Module
+      summary: Transaction editable info
+      description: Allows user to modify the editable info of a transaction.
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in : path
+          name : checking
+          description: An account identification checking id
+          required: true
+          type: string
+        - in : path
+          name : id
+          description: A transaction id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction details retrieved successfully
+          schema:
+            $ref: '#/definitions/TransactionDetailsResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Accounts Module
+      summary: Transaction editable info
+      description: Allows user to modify the editable info of a transaction.
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in : path
+          name : checking
+          description: An account identification checking id
+          required: true
+          type: string
+        - in : path
+          name : id
+          description: A transaction id
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update transaction info
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionDetails'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction updated successfully
+          schema:
+            $ref: '#/definitions/TransactionDetailsResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+definitions:
+
+  Account:
+    properties:
+                checking:
+                  type: string
+                  description: account bank checking
+                balance:
+                  type: number
+                  description: account balance
+
+  AccountsResponse:
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          account1:
+            type: object
+            properties:
+              checking:
+                type: string
+                description: account bank checking
+              balance:
+                type: number
+                description: account balance
+          account2:
+            type: object
+            properties:
+              checking:
+                type: string
+                description: account bank checking
+              balance:
+                type: number
+                description: account balance
+
+  Transaction:
+    properties:
+      id:
+        type: string
+        description: transaction id
+      date:
+        type: string
+        description: transaction date
+      description:
+        type: string
+        description: transaction description
+      amount:
+        type: string
+        description: transaction amount
+      balance:
+        type: string
+        description: transaction balance
+        
+  TransactionsResponse:
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          transaction:
+            type: object
+            properties:
+              id:
+                type: string
+                description: transaction id
+              date:
+                type: string
+                description: transaction date
+              description:
+                type: string
+                description: transaction description
+              amount:
+                type: string
+                description: transaction amount
+              balance:
+                type: string
+                description: transaction balance
+          transaction2:
+            type: object
+            properties:
+              id:
+                type: string
+                description: transaction id
+              date:
+                type: string
+                description: transaction date
+              description:
+                type: string
+                description: transaction description
+              amount:
+                type: string
+                description: transaction amount
+              balance:
+                type: string
+                description: transaction balance
+  
+  TransactionDetails:
+    properties:
+      category:
+        type: string
+        description: transaction category
+      notes:
+        type: string
+        description: transaction notes
+
+  TransactionDetailsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          category:
+            type: string
+          notes:
+            type: string
+
+
+
+
+# accounts
+GET /accounts
+GET transactions/accounts
+{ 
+  'accounts': {
+    "accountId1": {
+      "checking": "string",
+      "balance": "string",
+    }
+    "accountId2": {
+      "checking": "string",
+      "balance": "string",
+    }
+  }
+}
+
+# afficher les transactions
+GET /accounts/{AccountId}/transactions
+GET /account/{checking}
+GET /transactions/{checking}
+account:{
+  "transaction1": {
+    "id": "string",
+    "date": "string",
+    "description": "string",
+    "amount": "string",
+    "balance": "string",
+    "type" : "string",
+    "details": {
+      "category": "string",
+      "notes": "string"
+    }
+  }
+
+  "transaction2": {
+    "id": "string",
+    "date": "string",
+    "description": "string",
+    "amount": "string",
+    "balance": "string",
+    "type" : "string",
+    "details": {
+      "category": "string",
+      "notes": "string"
+    }
+  }    
+}
+# {
+#   "year": {
+#     "mounth": {
+#       "day": {
+#         "transaction1": {
+#           "id": "string",
+#           "date": "string",
+#           "description": "string",
+#           "amount": "string",
+#           "balance": "string"
+#         }
+#         "transaction2": {
+#           "id": "string",
+#           "date": "string",
+#           "description": "string",
+#           "amount": "string",
+#           "balance": "string"
+#         }
+#       }
+#     }
+#   }
+# }
+
+# ajouter / modifier ou supprimer (put null) le détail d'une transaction
+#  /accounts/{AccountId}/transactions/{transactionId}
+# /transactions/{transactionId}
+GET /transactions/{checking}/{id} -> est-ce utile ?
+PUT /transactions/{transactionId}
