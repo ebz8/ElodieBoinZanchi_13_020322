@@ -43,7 +43,6 @@ export const updateUserData = createAsyncThunk(
         // Any status code from range of 2xx
         if (accessToken) {
           config.headers["Authorization"] = `Bearer ${accessToken}`
-          // config.data = newData
         }
         return config
       },

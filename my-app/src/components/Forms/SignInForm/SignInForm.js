@@ -41,7 +41,7 @@ function SignInForm() {
     const remember = data.rememberme
     const email = data.username
     const password = data.password
-    dispatch(login({ email, password, remember }))
+    dispatch(login({ email, password }))
   }
 
   useEffect(() => {
