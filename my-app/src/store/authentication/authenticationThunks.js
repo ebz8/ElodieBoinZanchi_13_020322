@@ -3,7 +3,8 @@ import { instance, setToken, removeToken, saveToken } from "../../services/api"
 
 export const login = createAsyncThunk("auth/login", async (data) => {
   instance.interceptors.response.use(
-    (response) => {      
+    (response) => {  
+      console.log(response)    
       return response
     },
     (error) => {
@@ -19,7 +20,6 @@ export const login = createAsyncThunk("auth/login", async (data) => {
   )
   const response = await instance.post("login", data)
   setToken(response.data.body.token)
-  console.log(data.remember)
 
   return response.data
 })

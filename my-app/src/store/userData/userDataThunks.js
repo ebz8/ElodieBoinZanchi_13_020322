@@ -36,13 +36,14 @@ export const getUserData = createAsyncThunk(
 export const updateUserData = createAsyncThunk(
   "auth/updateUserData",
   async (newData) => {
+    console.log(newData)
     const accessToken = getToken()
     instance.interceptors.request.use(
       (config) => {
         // Any status code from range of 2xx
         if (accessToken) {
           config.headers["Authorization"] = `Bearer ${accessToken}`
-          config.data = newData
+          // config.data = newData
         }
         return config
       },
@@ -57,7 +58,7 @@ export const updateUserData = createAsyncThunk(
         return Promise.reject(message)
       }
     )
-    const response = await instance.put("profile")
+    const response = await instance.put("profile", newData)
     return { ...response.data }
   }
 )

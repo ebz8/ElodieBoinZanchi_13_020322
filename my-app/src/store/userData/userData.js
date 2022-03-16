@@ -54,11 +54,11 @@ export const userData = createSlice({
         })
         .addCase(logout.fulfilled, (state) => {
             state.fetchedData = false
+            state.userDataError = false
             state.email = null
             state.firstName = null
             state.id = null
             state.lastName = null
-            state.userDataError = false
         })
     }
 })
