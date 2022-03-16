@@ -11,12 +11,12 @@ schemes:
   - http
 
 paths:
-  /accounts:
+  /transactions/accounts:
     get:
       security:
         - Bearer: []
       tags:
-        - Accounts Module
+        - Transactions Module
       summary: List of user accounts
       description: Get an array with one object per account with general info.
       parameters:
@@ -42,7 +42,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Accounts Module
+        - Transactions Module
       summary: List of one account transactions
       description: Retrieves an account identification checking in parameters to returns an array with all the associated transactions.
       parameters:
@@ -72,7 +72,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Accounts Module
+        - Transactions Module
       summary: Transaction editable info
       description: Allows user to modify the editable info of a transaction.
       parameters:
@@ -106,7 +106,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Accounts Module
+        - Transactions Module
       summary: Transaction editable info
       description: Allows user to complete, modify or delete the editable info of a transaction.
       parameters:
