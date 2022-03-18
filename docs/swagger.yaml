@@ -73,7 +73,7 @@ paths:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Transaction editable info
+      summary: Transaction info
       description: Allows user to modify the editable info of a transaction.
       parameters:
         - in: header
@@ -97,7 +97,7 @@ paths:
         '200':
           description: Transaction details retrieved successfully
           schema:
-            $ref: '#/definitions/TransactionDetailsResponse'
+            $ref: '#/definitions/TransactionResponse'
         '400':
           description: Invalid Fields
         '500':
