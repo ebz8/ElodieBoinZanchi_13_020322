@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getUserData, updateUserData } from './userDataThunks'
 import { logout } from '../authentication/authenticationThunks'
 
-// mettre des types token: boolean etc.
 const initialState = {
     loadingUser: false,
     userDataError: false,
@@ -28,7 +27,6 @@ export const userData = createSlice({
             state.loadingUser = false
             state.fetchedData = false
             state.userDataError = action.payload
-            state.userData = {}
         })
         .addCase(getUserData.fulfilled, (state, action) => {
             state.loadingUser = false

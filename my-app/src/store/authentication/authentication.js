@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { login, logout } from './authenticationThunks'
 import { getToken } from '../../services/api'
+import { login, logout } from './authenticationThunks'
 import { getUserData } from '../userData/userDataThunks'
 
-// mettre des types token: booleann etc.
 const initialState = {
     loading: false,
     authError: false,

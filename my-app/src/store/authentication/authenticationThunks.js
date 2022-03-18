@@ -3,7 +3,7 @@ import { argentbankApi, setToken, removeToken } from "../../services/api"
 
 export const login = createAsyncThunk("auth/login", async (data) => {
   argentbankApi.interceptors.response.use(
-    (response) => {  
+    (response) => {
       return response
     },
     (error) => {
@@ -23,6 +23,6 @@ export const login = createAsyncThunk("auth/login", async (data) => {
   return response.data
 })
 
-export const logout = createAsyncThunk("auth/signOut", async () => {
+export const logout = createAsyncThunk("auth/logout", async () => {
   removeToken()
 })
