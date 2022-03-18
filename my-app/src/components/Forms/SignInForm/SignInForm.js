@@ -1,11 +1,11 @@
 import "./SignInForm.scss"
 import { FaUserCircle } from "react-icons/fa"
 
-import { useForm } from "react-hook-form"
-import { login } from "../../../store/authentication/authenticationThunks"
-import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import { useDispatch, useSelector } from "react-redux"
+import { login } from "../../../store/authentication/authenticationThunks"
 
 /**
  * Login Form
@@ -41,7 +41,7 @@ function SignInForm() {
     const remember = data.rememberme
     const email = data.username
     const password = data.password
-    dispatch(login({ email, password }))
+    dispatch(login({ email, password, remember }))
   }
 
   useEffect(() => {
@@ -49,8 +49,7 @@ function SignInForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchedData])
 
-  // if (isLoading)
-  // if isSubmitSuccessful
+
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit(handleLogin)}>
