@@ -18,7 +18,7 @@ paths:
       tags:
         - Transactions Module
       summary: List of user accounts
-      description: Get an array with one object per account with general info.
+      description: Get an object with one object per account with general info.
       parameters:
         - in: header
           name: Authorization
@@ -44,7 +44,7 @@ paths:
       tags:
         - Transactions Module
       summary: List of one account transactions
-      description: Retrieves an account identification checking in parameters to returns an array with all the associated transactions.
+      description: Retrieves an account id in parameters to returns an object with all the associated transactions.
       parameters:
         - in: header
           name: Authorization
@@ -171,7 +171,7 @@ definitions:
           account1:
             type: object
             properties:
-              checking:
+              accountId:
                 type: string
                 description: account bank checking
               balance:
@@ -180,7 +180,7 @@ definitions:
           account2:
             type: object
             properties:
-              checking:
+              accountId:
                 type: string
                 description: account bank checking
               balance:
