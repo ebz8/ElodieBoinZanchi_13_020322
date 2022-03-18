@@ -29,6 +29,7 @@ export const getUserData = createAsyncThunk(
       }
     )
     const response = await argentbankApi.post("profile")
+    console.log(response)
     return { ...response.data, accessToken }
   }
 )
