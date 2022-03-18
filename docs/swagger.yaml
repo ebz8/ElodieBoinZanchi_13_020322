@@ -1,9 +1,9 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Argent Bank Transactions API
   description: API model proposal for user transactions
-  version: '2.0.0'
-  termsOfService: 'http://swagger.io/terms/'
+  version: "2.0.0"
+  termsOfService: "http://swagger.io/terms/"
 
 host: localhost:3001
 basePath: /api/v2
@@ -20,21 +20,21 @@ paths:
       summary: List of user accounts
       description: Get an array with one object per account with general info.
       parameters:
-      - in: header
-        name: Authorization
-        description: Attach Bearer JWT token
-        required: true
-        type: string
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: All the accounts retrieved successfully
           schema:
-              $ref: '#/definitions/AccountsResponse'
-        '400':
+            $ref: "#/definitions/AccountsResponse"
+        "400":
           description: Invalid Fields
-        '500':
+        "500":
           description: Internal Server Error
 
   /accounts/{accountId}:
@@ -46,26 +46,26 @@ paths:
       summary: List of one account transactions
       description: Retrieves an account identification checking in parameters to returns an array with all the associated transactions.
       parameters:
-      - in: header
-        name: Authorization
-        description: Attach Bearer JWT token
-        required: true
-        type: string
-      - in: path
-        name: accountId
-        description: An account identification checking id
-        required: true
-        type: string
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: path
+          name: accountId
+          description: An account identification checking id
+          required: true
+          type: string
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: All the transactions retrieved successfully
           schema:
-              $ref: '#/definitions/AccountResponse'
-        '400':
+            $ref: "#/definitions/AccountResponse"
+        "400":
           description: Invalid Fields
-        '500':
+        "500":
           description: Internal Server Error
   /transactions/{accountId}/{transactionId}:
     get:
@@ -81,26 +81,26 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        - in : path
-          name : accountId
+        - in: path
+          name: accountId
           description: An account identification checking id
           required: true
           type: string
-        - in : path
-          name : transactionId
+        - in: path
+          name: transactionId
           description: A transaction id
           required: true
           type: string
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Transaction details retrieved successfully
           schema:
-            $ref: '#/definitions/TransactionResponse'
-        '400':
+            $ref: "#/definitions/TransactionResponse"
+        "400":
           description: Invalid Fields
-        '500':
+        "500":
           description: Internal Server Error
     put:
       security:
@@ -115,13 +115,13 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        - in : path
-          name : accountId
+        - in: path
+          name: accountId
           description: An account identification checking id
           required: true
           type: string
-        - in : path
-          name : transactionId
+        - in: path
+          name: transactionId
           description: A transaction id
           required: true
           type: string
@@ -130,17 +130,17 @@ paths:
           description: Update transaction info
           required: true
           schema:
-            $ref: '#/definitions/TransactionDetails'
+            $ref: "#/definitions/TransactionDetails"
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Transaction updated successfully
           schema:
-            $ref: '#/definitions/TransactionResponse'
-        '400':
+            $ref: "#/definitions/TransactionResponse"
+        "400":
           description: Invalid Fields
-        '500':
+        "500":
           description: Internal Server Error
 
 securityDefinitions:
@@ -150,7 +150,6 @@ securityDefinitions:
     in: header
 
 definitions:
-
   Accounts:
     properties:
       accountId:
@@ -187,7 +186,7 @@ definitions:
               balance:
                 type: number
                 description: account balance
-  
+
   Account:
     properties:
       year:
@@ -196,33 +195,33 @@ definitions:
           mounth:
             type: object
             properties:
-             day:
-              type: object
-              properties:
-                transaction:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      description: transaction id
-                    date:
-                      type: string
-                      description: transaction date
-                    description:
-                      type: string
-                      description: transaction description
-                    amount:
-                      type: string
-                      description: transaction amount
-                    balance:
-                      type: string
-                      description: transaction balance
-                    category:
-                      type: string
-                      description: editable transaction category
-                    notes:
-                      type: string
-                      description: editable transaction notes
+              day:
+                type: object
+                properties:
+                  transaction:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: transaction id
+                      date:
+                        type: string
+                        description: transaction date
+                      description:
+                        type: string
+                        description: transaction description
+                      amount:
+                        type: string
+                        description: transaction amount
+                      balance:
+                        type: string
+                        description: transaction balance
+                      category:
+                        type: string
+                        description: editable transaction category
+                      notes:
+                        type: string
+                        description: editable transaction notes
 
   Transaction:
     properties:
@@ -247,7 +246,7 @@ definitions:
       notes:
         type: string
         description: editable transaction notes
-        
+
   AccountResponse:
     properties:
       year:
@@ -256,58 +255,58 @@ definitions:
           mounth:
             type: object
             properties:
-             day:
-              type: object
-              properties:
-                transaction1:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      description: transaction id
-                    date:
-                      type: string
-                      description: transaction date
-                    description:
-                      type: string
-                      description: transaction description
-                    amount:
-                      type: string
-                      description: transaction amount
-                    balance:
-                      type: string
-                      description: transaction balance
-                    category:
-                      type: string
-                      description: editable transaction category
-                    notes:
-                      type: string
-                      description: editable transaction notes
-                transaction2:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      description: transaction id
-                    date:
-                      type: string
-                      description: transaction date
-                    description:
-                      type: string
-                      description: transaction description
-                    amount:
-                      type: string
-                      description: transaction amount
-                    balance:
-                      type: string
-                      description: transaction balance
-                    category:
-                      type: string
-                      description: editable transaction category
-                    notes:
-                      type: string
-                      description: editable transaction notes
-  
+              day:
+                type: object
+                properties:
+                  transaction1:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: transaction id
+                      date:
+                        type: string
+                        description: transaction date
+                      description:
+                        type: string
+                        description: transaction description
+                      amount:
+                        type: string
+                        description: transaction amount
+                      balance:
+                        type: string
+                        description: transaction balance
+                      category:
+                        type: string
+                        description: editable transaction category
+                      notes:
+                        type: string
+                        description: editable transaction notes
+                  transaction2:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: transaction id
+                      date:
+                        type: string
+                        description: transaction date
+                      description:
+                        type: string
+                        description: transaction description
+                      amount:
+                        type: string
+                        description: transaction amount
+                      balance:
+                        type: string
+                        description: transaction balance
+                      category:
+                        type: string
+                        description: editable transaction category
+                      notes:
+                        type: string
+                        description: editable transaction notes
+
   TransactionDetails:
     properties:
       category:
