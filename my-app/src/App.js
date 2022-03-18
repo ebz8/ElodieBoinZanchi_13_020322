@@ -10,7 +10,6 @@ import HomePage from "./pages/HomePage/HomePage"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import UserPage from "./pages/UserPage/UserPage"
 import ErrorsPage from "./pages/ErrorsPage/ErrorsPage"
-// import Loader from "./components/Loader/Loader"
 
 function App() {
   const dispatch = useDispatch()

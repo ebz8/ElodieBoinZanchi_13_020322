@@ -4,7 +4,6 @@ import { instance, setToken, removeToken, saveToken } from "../../services/api"
 export const login = createAsyncThunk("auth/login", async (data) => {
   instance.interceptors.response.use(
     (response) => {  
-      console.log(response)    
       return response
     },
     (error) => {

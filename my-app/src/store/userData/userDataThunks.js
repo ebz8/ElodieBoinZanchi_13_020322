@@ -36,7 +36,6 @@ export const getUserData = createAsyncThunk(
 export const updateUserData = createAsyncThunk(
   "auth/updateUserData",
   async (newData) => {
-    console.log(newData)
     const accessToken = getToken()
     instance.interceptors.request.use(
       (config) => {
