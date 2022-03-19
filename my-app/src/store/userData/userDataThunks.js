@@ -7,12 +7,11 @@ import { argentbankApi, getToken, removeToken } from "../../services/api"
 export const getUserData = createAsyncThunk(
   "auth/getUserData",
   async () => {
-    const accessToken = getToken()
     argentbankApi.interceptors.request.use(
       (config) => {
         // Any status code from range of 2xx
-        if (accessToken) {
-          config.headers["Authorization"] = `Bearer ${accessToken}`
+        if (getToken()) {
+          config.headers["Authorization"] = `Bearer ${getToken()}`
         }
         return config
       },
@@ -29,20 +28,18 @@ export const getUserData = createAsyncThunk(
       }
     )
     const response = await argentbankApi.post("profile")
-    console.log(response)
-    return { ...response.data, accessToken }
+    return { ...response.data }
   }
 )
 
 export const updateUserData = createAsyncThunk(
   "auth/updateUserData",
   async (newData) => {
-    const accessToken = getToken()
     argentbankApi.interceptors.request.use(
       (config) => {
         // Any status code from range of 2xx
-        if (accessToken) {
-          config.headers["Authorization"] = `Bearer ${accessToken}`
+        if (getToken()) {
+          config.headers["Authorization"] = `Bearer ${getToken()}`
         }
         return config
       },

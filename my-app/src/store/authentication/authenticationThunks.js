@@ -18,8 +18,8 @@ export const login = createAsyncThunk("auth/login", async (data) => {
     }
   )
   const response = await argentbankApi.post("login", data)
-  console.log(response)
-  if (response) {
+
+  if (response.data) {
     setToken(response.data.body.token)
   }
 
@@ -28,5 +28,4 @@ export const login = createAsyncThunk("auth/login", async (data) => {
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   removeToken()
-  window.location.href = '/'
 })

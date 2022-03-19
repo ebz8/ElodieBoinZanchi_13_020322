@@ -21,7 +21,7 @@ const MainNav = () => {
       {fetchedData ? (
         <div className='nav-items'>
           <NavButton path={`/profile`} name={firstName}/>
-          <NavButton path={`/`} name='Sign Out' action={handleLogout}/>
+          <NavButton path={`/login`} name='Sign Out' action={handleLogout}/>
         </div>
         )
       : <NavButton path={`/login`} name='Sign In'/> }
