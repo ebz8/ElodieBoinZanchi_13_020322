@@ -1,55 +1,54 @@
-@import '../../assets/style/mixins.scss';
+@import "../../assets/style/mixins.scss";
 
 .main-nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: rem(5) rem(20);
+
+  @include mobile {
+    padding: rem(5) rem(10);
+  }
+
+  .logo {
+    width: rem(200);
+
+    @include mobile-large {
+      width: rem(150);
+    }
+
+    @include mobile-small {
+      width: rem(120);
+      margin-bottom: -0.2rem;
+    }
+
+    &.center {
+      @include mobile {
+        margin: auto;
+      }
+    }
+  }
+
+  .nav-items {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: rem(5) rem(20);
+    gap: 0.8rem;
 
     @include mobile {
-        padding: rem(5) rem(10);
+      width: 100%;
+      justify-content: flex-end;
+      align-self: flex-end;
+      padding-bottom: 0.5rem;
     }
 
-    .logo {
-        width: rem(200);
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      margin-right: 0.5rem;
 
-        @include mobile-large {
-            width: rem(150);
-        }
-
-        @include mobile-small {
-            width: rem(120);
-            margin-bottom: -0.2rem;
-        }
-        
-        &.center {
-            @include mobile {
-                margin: auto;
-            }
-        }
+      svg {
+        font-size: 1.2rem;
+      }
     }
-
-    .nav-items {
-        display: flex;
-        gap: .8rem;
-
-        @include mobile {
-            width: 100%;
-            justify-content: flex-end;
-            align-self: flex-end;
-            padding-bottom: .5rem;
-        }
-        
-        .nav-btn {
-            display: flex;
-            align-items: center;
-            margin-right: 0.5rem;
-
-            svg {
-                font-size: 1.2rem;
-            }
-        }
-    }
-
+  }
 }

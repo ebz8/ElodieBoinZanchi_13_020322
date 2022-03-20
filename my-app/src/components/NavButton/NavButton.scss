@@ -1,18 +1,18 @@
-@import '../../assets/style/mixins.scss';
+@import "../../assets/style/mixins.scss";
 
 .nav-btn {
-    display: flex;
-    gap: .3rem;
+  display: flex;
+  gap: 0.3rem;
+  font-weight: bold;
+
+  .fa {
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  p {
     font-weight: bold;
-
-    .fa {
-        font: normal normal normal 14px/1 FontAwesome;
-        font-size: inherit;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    p {
-        font-weight: bold;
-    }
+  }
 }
