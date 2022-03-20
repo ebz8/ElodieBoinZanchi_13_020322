@@ -19,10 +19,10 @@ const MainNav = () => {
     <header className="main-nav">
       <Logo center={fetchedData ? true : false}/>
       {fetchedData ? (
-        <nav className='nav-items'>
+        <ul className='nav-items'>
           <NavButton path={`/profile`} name={firstName}/>
           <NavButton path={`/login`} name='Sign Out' action={handleLogout}/>
-        </nav>
+        </ul>
         )
       : <NavButton path={`/login`} name='Sign In'/> }
     </header>
