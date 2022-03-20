@@ -18,18 +18,22 @@ function SignInForm() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-    /**
+  /**
    * User-update Form config with react-hook-form
    * onTouched = validation strategy before user submit the form
    */
   const {
     register,
     handleSubmit,
+    getValues,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     mode: "onTouched",
     defaultValues: {
-      rememberme : true,
+      username: '',
+      password: '',
+      rememberme: true,
     },
   })
 
@@ -41,6 +45,10 @@ function SignInForm() {
     const remember = data.rememberme
     const email = data.username
     const password = data.password
+    reset({
+      ...getValues(),
+      password: 'hello',
+    })
     dispatch(login({ email, password, remember }))
   }
 
@@ -48,7 +56,6 @@ function SignInForm() {
     fetchedData && navigate("/profile")
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchedData])
-
 
   return (
     <div className="form-container">

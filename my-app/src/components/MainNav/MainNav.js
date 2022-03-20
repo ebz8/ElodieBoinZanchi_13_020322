@@ -16,16 +16,16 @@ const MainNav = () => {
   }
 
   return (
-    <nav className="main-nav">
+    <header className="main-nav">
       <Logo center={fetchedData ? true : false}/>
       {fetchedData ? (
-        <div className='nav-items'>
+        <nav className='nav-items'>
           <NavButton path={`/profile`} name={firstName}/>
           <NavButton path={`/login`} name='Sign Out' action={handleLogout}/>
-        </div>
+        </nav>
         )
       : <NavButton path={`/login`} name='Sign In'/> }
-    </nav>
+    </header>
   )
 }
 

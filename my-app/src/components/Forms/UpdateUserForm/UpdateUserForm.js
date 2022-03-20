@@ -37,6 +37,8 @@ function UpdateUserForm() {
     reset({
       firstName: firstName,
       lastName: lastName,
+    }, {
+      keepDirty: true,
     })
   }
   /**
