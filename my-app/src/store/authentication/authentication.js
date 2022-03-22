@@ -29,9 +29,13 @@ export const authentication = createSlice({
             state.authError = action.error.message
             state.connected = false
         })
+        .addCase(logout.pending, (state) => {
+            state.loading = true
+        })
         .addCase(logout.fulfilled, (state) => {
             state.connected = false
             state.authError = false
+            state.loading = false
         })
         .addCase(getUserData.fulfilled, (state) => {
             state.loading = false

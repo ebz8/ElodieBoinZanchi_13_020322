@@ -43,6 +43,7 @@ export const userData = createSlice({
         .addCase(updateUserData.rejected, (state, action) => {
             state.loadingUser = false
             state.userDataError = action.error.message
+            state.fetchedData = false
         })
         .addCase(updateUserData.fulfilled, (state, action) => {
             state.loadingUser = false
